@@ -1,0 +1,21 @@
+# Node modules
+node_modules/
+
+# Env files (kalau nanti kamu pakai)
+.env
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# System files
+.DS_Store
+Thumbs.db
+
+# VSCode folder (kalau pakai VSCode)
+.vscode/
+
+# Output build (kalau nanti buat)
+dist/
+build/
