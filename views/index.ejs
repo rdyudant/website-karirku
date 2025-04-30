@@ -14,9 +14,10 @@
     </div>
 
 <%- include('partials/navbar') %>
+
 <section class="background-section">
     <!-- Hero Section with Search -->
-    <section class="hero-section" style="margin-top: 30px;">
+    <section class="hero-section">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
@@ -25,13 +26,13 @@
                     <div class="search-box mb-5" data-aos="fade-up" data-aos-delay="200">
                         <form>
                             <div class="row g-2">
-                                <div class="col-md-5">
+                                <div class="col-md-10">
                                     <div class="input-group">
                                         <span class="input-group-text bg-white border-end-0"><i class="fas fa-search"></i></span>
-                                        <input type="text" class="form-control border-start-0" placeholder="Posisi, perusahaan, atau kata kunci">
+                                        <input type="text" class="form-control border-start-0" placeholder="Posisi atau kata kunci lain">
                                     </div>
                                 </div>
-                                <div class="col-md-5">
+                                <!-- <div class="col-md-5">
                                     <div class="input-group">
                                         <span class="input-group-text bg-white border-end-0"><i class="fas fa-map-marker-alt"></i></span>
                                         <select class="form-select border-start-0">
@@ -42,7 +43,7 @@
                                             <option>Yogyakarta</option>
                                         </select>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="col-md-2">
                                     <button type="submit" class="btn btn-primary-custom w-100">Cari</button>
                                 </div>
@@ -145,9 +146,9 @@
                     <div class="job-card bg-white h-100">
                         <div class="d-flex justify-content-between mb-3">
                             <img src="/assets/img/AOT.jpg" alt="Company Logo" class="company-logo">
-                            <button class="btn btn-sm btn-outline-secondary rounded-circle">
+                            <!-- <button class="btn btn-sm btn-outline-secondary rounded-circle">
                                 <i class="far fa-bookmark"></i>
-                            </button>
+                            </button> -->
                         </div>
                         <h5 class="job-title mb-1">Frontend Developer</h5>
                         <p class="company-name text-muted mb-2">PT Teknologi Maju</p>
@@ -168,9 +169,6 @@
                     <div class="job-card bg-white h-100">
                         <div class="d-flex justify-content-between mb-3">
                             <img src="/assets/img/AOT.jpg" alt="Company Logo" class="company-logo">
-                            <button class="btn btn-sm btn-outline-secondary rounded-circle">
-                                <i class="far fa-bookmark"></i>
-                            </button>
                         </div>
                         <h5 class="job-title mb-1">Digital Marketing Specialist</h5>
                         <p class="company-name text-muted mb-2">Brand Solutions Indonesia</p>
@@ -191,9 +189,6 @@
                     <div class="job-card bg-white h-100">
                         <div class="d-flex justify-content-between mb-3">
                             <img src="/assets/img/AOT.jpg" alt="Company Logo" class="company-logo">
-                            <button class="btn btn-sm btn-outline-secondary rounded-circle">
-                                <i class="far fa-bookmark"></i>
-                            </button>
                         </div>
                         <h5 class="job-title mb-1">Data Analyst</h5>
                         <p class="company-name text-muted mb-2">DataTech Solutions</p>
@@ -273,6 +268,23 @@
 <button id="backToTop" title="Kembali ke atas">
     <i class="fas fa-chevron-up"></i>
 </button>
+<script>
+    // Tombol Back to Top
+    const backToTopBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+            backToTopBtn.style.display = 'flex';
+        } else {
+            backToTopBtn.style.display = 'none';
+        }
+    });
+    backToTopBtn.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+</script>
 
 <%- include('partials/footer') %>
 

@@ -21,7 +21,12 @@
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Kata Sandi</label>
-                    <input type="password" id="password" name="password" class="form-control" required placeholder="Masukkan kata sandi">
+                    <div class="input-group">
+                        <input type="password" id="password" name="password" class="form-control" required placeholder="Masukkan kata sandi">
+                        <button class="btn btn-outline-secondary toggle-password" type="button" data-target="#password">
+                            <i class="fa fa-eye"></i>
+                        </button>
+                    </div>
                 </div>
                 <div class="d-grid">
                     <button type="submit" class="btn btn-primary-custom">Masuk</button>

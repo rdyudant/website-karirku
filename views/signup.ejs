@@ -25,11 +25,24 @@
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Kata Sandi</label>
-                    <input type="password" id="password" name="password" class="form-control" required placeholder="Kata Sandi">
+                    <div class="input-group">
+                        <input type="password" id="password" name="password" class="form-control" required placeholder="Kata Sandi">
+                        <button class="btn btn-outline-secondary toggle-password" type="button" data-target="#password">
+                            <i class="fa fa-eye"></i>
+                        </button>
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="konfirmasi" class="form-label">Konfirmasi Kata Sandi</label>
-                    <input type="password" id="konfirmasi" name="konfirmasi" class="form-control" required placeholder="Konfirmasi Kata Sandi">
+                    <div class="input-group">
+                        <input type="password" id="konfirmasi" name="konfirmasi" class="form-control" required placeholder="Konfirmasi Kata Sandi">
+                        <button class="btn btn-outline-secondary toggle-password" type="button" data-target="#konfirmasi">
+                            <i class="fa fa-eye"></i>
+                        </button>
+                        <div class="invalid-feedback">
+                            Konfirmasi kata sandi tidak cocok.
+                        </div>
+                    </div>
                 </div>
                 <div class="d-grid">
                     <button type="submit" class="btn btn-primary-custom">Daftar Sekarang</button>
@@ -41,6 +54,39 @@
 </section>
 
 <%- include('partials/footer') %>
+
+<script>
+
+    // KONFIRMASI KATA SANDI
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.querySelector('.signup-form');
+        const password = document.getElementById('password');
+        const konfirmasi = document.getElementById('konfirmasi');
+
+        form.addEventListener('submit', (e) => {
+            if (password.value !== konfirmasi.value) {
+            konfirmasi.classList.remove('is-valid');
+            konfirmasi.classList.add('is-invalid');
+            e.preventDefault();
+            } else {
+            konfirmasi.classList.remove('is-invalid');
+            konfirmasi.classList.add('is-valid');
+            }
+        });
+
+        konfirmasi.addEventListener('input', () => {
+            if (password.value === konfirmasi.value) {
+            konfirmasi.classList.remove('is-invalid');
+            konfirmasi.classList.add('is-valid');
+            } else {
+            konfirmasi.classList.remove('is-valid');
+            konfirmasi.classList.add('is-invalid');
+            }
+        });
+    });
+
+
+</script>
 
 </body>
 </html>

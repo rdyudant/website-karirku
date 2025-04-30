@@ -62,4 +62,34 @@
             duration: 800, // Durasi animasi dalam ms
             once: true     // Animasi hanya jalan sekali (tidak diulang saat scroll balik)
         });
+
+        // Efek title berjalan
+        // let titleText = document.title + " || ";
+        // let scrollPos = 0;
+
+        // function scrollTitle() {
+        //     document.title = titleText.substring(scrollPos) + titleText.substring(0, scrollPos);
+        //     scrollPos = (scrollPos + 1) % titleText.length;
+        //     setTimeout(scrollTitle, 200); // kecepatan scroll
+        // }
+        // scrollTitle();
+
+        // HIDE PASSWORD
+        document.querySelectorAll('.toggle-password').forEach(button => {
+            button.addEventListener('click', function () {
+                const targetInput = document.querySelector(this.dataset.target);
+                const icon = this.querySelector('i');
+
+                if (targetInput.type === 'password') {
+                targetInput.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+                } else {
+                targetInput.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+                }
+            });
+        });
+
     </script>
