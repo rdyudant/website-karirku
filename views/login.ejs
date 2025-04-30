@@ -29,13 +29,34 @@
                     </div>
                 </div>
                 <div class="d-grid">
-                    <button type="submit" class="btn btn-primary-custom">Masuk</button>
+                    <button type="button" class="btn btn-primary-custom" onclick="login()">Masuk</button>
                 </div>
                 <p class="text-center mt-3 login-register-link">Belum punya akun? <a href="/signup">Daftar di sini</a></p>
             </form>
         </div>
     </section>
 </section>
+
+<script>
+    function login(){
+        var email = $("#email").val();
+        var password = $("#password").val();
+
+        $.ajax({
+            url: "https://herbaemas.com/login-karir",
+            type: "POST",
+            data: {email: email, password: password},
+            dataType: "json",
+            success: function(data){
+                if(data.kode == 500){
+                    alert(data.msg)
+                }else{
+                    console.log(data)
+                }
+            }
+        })
+    }
+</script>
 
 <%- include('partials/footer') %>
 

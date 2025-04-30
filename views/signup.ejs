@@ -45,7 +45,7 @@
                     </div>
                 </div>
                 <div class="d-grid">
-                    <button type="submit" class="btn btn-primary-custom">Daftar Sekarang</button>
+                    <button type="button" onclick="daftar()" class="btn btn-primary-custom">Daftar Sekarang</button>
                 </div>
                 <p class="text-center mt-3 signup-login-link">Sudah punya akun? <a href="/login">Masuk di sini</a></p>
             </form>
@@ -85,6 +85,25 @@
         });
     });
 
+    function daftar(){
+        var nama = $("#nama").val();
+        var email = $("#email").val();
+        var password = $("#password").val();
+
+        $.ajax({
+            url: "https://herbaemas.com/register-karir",
+            type: "POST",
+            data: {fullname: nama, email: email, password: password},
+            dataType: "json",
+            success: function(data){
+                if(data.status == 200){
+                    alert(data.msg)
+                }else{
+                    alert(data.msg)
+                }
+            }
+        })
+    }
 
 </script>
 
