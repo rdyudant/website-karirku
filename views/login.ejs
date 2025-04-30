@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <%- include('partials/header') %>
+</head>
+<body>
+    <!-- Loading Spinner -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+    </div>
+    
+<%- include('partials/navbar') %>
+<section class="background-section">
+    <section class="login-wrapper d-flex align-items-center justify-content-center">
+        <div class="login-container shadow rounded p-4 bg-white">
+            <h2 class="login-title text-center mb-4">Masuk ke KarirKu</h2>
+            <form class="login-form">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Alamat Email</label>
+                    <input type="email" id="email" name="email" class="form-control" required placeholder="Masukkan email">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Kata Sandi</label>
+                    <input type="password" id="password" name="password" class="form-control" required placeholder="Masukkan kata sandi">
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary-custom">Masuk</button>
+                </div>
+                <p class="text-center mt-3 login-register-link">Belum punya akun? <a href="/signup">Daftar di sini</a></p>
+            </form>
+        </div>
+    </section>
+</section>
+
+<%- include('partials/footer') %>
+
+</body>
+</html>

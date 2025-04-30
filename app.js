@@ -13,6 +13,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', (req, res) => {
     res.render('index', { title: 'KarirKu - Herba Emas Wahidatama' });
 });
+app.get('/login', (req, res) => {
+    res.render('login', { title: 'KarirKu - Masuk' });
+});
+app.get('/signup', (req, res) => {
+    res.render('signup', { title: 'KarirKu - Daftar' });
+});
 
 // Start server
 const PORT = process.env.PORT || 3000;

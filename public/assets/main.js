@@ -61,18 +61,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
 });
 
-// SIGN.EJS JavaScript
-// const signUpButton = document.getElementById('signUp');
-// const signInButton = document.getElementById('signIn');
-// const container = document.getElementById('signup-container');
-
-// signUpButton.addEventListener('click', () => {
-//     container.classList.add("right-panel-active");
-// });
-// signInButton.addEventListener('click', () => {
-//     container.classList.remove("right-panel-active");
-// });
-
 // Loading animation
 window.addEventListener('load', function() {
     const loader = document.getElementById('loader-wrapper');

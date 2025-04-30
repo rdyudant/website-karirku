@@ -1,6 +1,20 @@
-<%- include('partials/header') %>
-<section class="background-section">
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <%- include('partials/header') %>
+</head>
+<body>
+    <!-- Loading Spinner -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+    </div>
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress-container">
+        <div id="scroll-progress-bar"></div>
+    </div>
 
+<%- include('partials/navbar') %>
+<section class="background-section">
     <!-- Hero Section with Search -->
     <section class="hero-section" style="margin-top: 30px;">
         <div class="container">
@@ -261,3 +275,6 @@
 </button>
 
 <%- include('partials/footer') %>
+
+</body>
+</html>
