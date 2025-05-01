@@ -19,6 +19,12 @@ app.get('/login', (req, res) => {
 app.get('/signup', (req, res) => {
     res.render('signup', { title: 'KarirKu - Daftar' });
 });
+app.get('/user-index', (req, res) => {
+    res.render('user-index', { title: 'KarirKu - Selamat Datang' });
+});
+app.get('/dashboard', (req, res) => {
+    res.render('dashboard', { title: 'KarirKu - Selamat Datang' });
+});
 
 // Start server
 const PORT = process.env.PORT || 3000;

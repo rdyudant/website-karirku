@@ -85,24 +85,68 @@
         });
     });
 
-    function daftar(){
-        var nama = $("#nama").val();
-        var email = $("#email").val();
-        var password = $("#password").val();
+    function daftar() {
+        var nama = $("#nama").val().trim();
+        var email = $("#email").val().trim();
+        var password = $("#password").val().trim();
+        var konfirmasi = $("#konfirmasi").val().trim();
+
+        // Validasi manual
+        if (!nama || !email || !password || !konfirmasi) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Form Belum Lengkap',
+                text: 'Harap isi semua kolom.'
+            });
+            return;
+        }
+
+        if (password !== konfirmasi) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Konfirmasi Salah',
+                text: 'Kata sandi dan konfirmasi tidak cocok.'
+            });
+            return;
+        }
+
+        // Spinner & disable tombol
+        const btn = $(".btn-primary-custom");
+        btn.html('<span class="spinner-border spinner-border-sm me-2" role="status"></span>Memproses...');
+        btn.prop("disabled", true);
 
         $.ajax({
             url: "https://herbaemas.com/register-karir",
             type: "POST",
-            data: {fullname: nama, email: email, password: password},
+            data: {
+                fullname: nama,
+                email: email,
+                password: password
+            },
             dataType: "json",
-            success: function(data){
-                if(data.status == 200){
-                    alert(data.msg)
-                }else{
-                    alert(data.msg)
-                }
+            success: function (data) {
+                Swal.fire({
+                    icon: data.status == 200 ? 'success' : 'error',
+                    title: data.status == 200 ? 'Berhasil!' : 'Gagal!',
+                    text: data.msg
+                }).then(() => {
+                    if (data.status == 200) {
+                        window.location.href = '/login';
+                    }
+                });
+            },
+            error: function () {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Kesalahan Server',
+                    text: 'Gagal menghubungi server. Coba lagi nanti.'
+                });
+            },
+            complete: function () {
+                btn.html('Daftar Sekarang');
+                btn.prop("disabled", false);
             }
-        })
+        });
     }
 
 </script>

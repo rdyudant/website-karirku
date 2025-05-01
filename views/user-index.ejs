@@ -13,7 +13,7 @@
         <div id="scroll-progress-bar"></div>
     </div>
 
-<%- include('partials/navbar') %>
+<%- include('partials/user-navbar') %>
 
 <section class="background-section">
     <!-- Hero Section with Search -->
@@ -58,78 +58,6 @@
         </div>
     </section>
 
-    <!-- Featured Companies -->
-    <section class="py-5 bg-light">
-        <div class="container">
-            <p class="text-center text-muted mb-4" data-aos="fade-up" data-aos-delay="100">DIPERCAYA OLEH PERUSAHAAN TERKEMUKA</p>
-            <div class="row featured-companies justify-content-center align-items-center" data-aos="zoom-in" data-aos-delay="200">
-                <div class="col-4 col-md-2 text-center mb-4">
-                    <img src="/assets/img/company.png" alt="Company 1" class="img-fluid">
-                </div>
-                <div class="col-4 col-md-2 text-center mb-4">
-                    <img src="/assets/img/company.png" alt="Company 2" class="img-fluid">
-                </div>
-                <div class="col-4 col-md-2 text-center mb-4">
-                    <img src="/assets/img/company.png" alt="Company 3" class="img-fluid">
-                </div>
-                <div class="col-4 col-md-2 text-center mb-4">
-                    <img src="/assets/img/company.png" alt="Company 4" class="img-fluid">
-                </div>
-                <div class="col-4 col-md-2 text-center mb-4">
-                    <img src="/assets/img/company.png" alt="Company 5" class="img-fluid">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Job Categories -->
-    <section class="py-5">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">Jelajahi Berdasarkan Kategori</h2>
-            <div class="row" data-aos="zoom-in" data-aos-delay="200">
-                <div class="col-6 col-md-3">
-                    <div class="category-card">
-                        <div class="icon-box mb-3">
-                            <i class="fas fa-laptop-code fa-2x" style="color: var(--primary-color);"></i>
-                        </div>
-                        <h5>Teknologi</h5>
-                        <p class="text-muted">1.250+ lowongan</p>
-                    </div>
-                </div>
-                <div class="col-6 col-md-3">
-                    <div class="category-card">
-                        <div class="icon-box mb-3">
-                            <i class="fas fa-chart-line fa-2x" style="color: #3498db;"></i>
-                        </div>
-                        <h5>Bisnis</h5>
-                        <p class="text-muted">980+ lowongan</p>
-                    </div>
-                </div>
-                <div class="col-6 col-md-3">
-                    <div class="category-card">
-                        <div class="icon-box mb-3">
-                            <i class="fas fa-paint-brush fa-2x" style="color: #9b59b6;"></i>
-                        </div>
-                        <h5>Desain</h5>
-                        <p class="text-muted">650+ lowongan</p>
-                    </div>
-                </div>
-                <div class="col-6 col-md-3">
-                    <div class="category-card">
-                        <div class="icon-box mb-3">
-                            <i class="fas fa-bullhorn fa-2x" style="color: #e67e22;"></i>
-                        </div>
-                        <h5>Marketing</h5>
-                        <p class="text-muted">820+ lowongan</p>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center mt-4" data-aos="zoom-in" data-aos-delay="200">
-                <a href="#" class="btn btn-outline-custom">Lihat Semua Kategori</a>
-            </div>
-        </div>
-    </section>
-
     <!-- Featured Jobs -->
     <section class="py-5 bg-light">
         <div class="container">
@@ -146,9 +74,6 @@
                     <div class="job-card bg-white h-100 position-relative p-3 border rounded">
                         <div class="d-flex justify-content-between mb-3">
                             <img src="/assets/img/AOT.jpg" alt="Company Logo" class="company-logo">
-                            <!-- <button class="btn btn-sm btn-outline-secondary rounded-circle">
-                                <i class="far fa-bookmark"></i>
-                            </button> -->
                         </div>
                         <h5 class="job-title mb-1">Frontend Developer</h5>
                         <p class="company-name text-muted mb-2">PT Teknologi Maju</p>
@@ -215,57 +140,6 @@
         </div>
     </section>
 
-    <!-- How It Works -->
-    <section class="py-5">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">Bagaimana Cara Kerjanya</h2>
-            <div class="row mt-5">
-                <div class="col-md-4 text-center mb-4 mb-md-0" data-aos="fade-up" data-aos-delay="200">
-                    <div class="px-4">
-                        <div class="bg-light rounded-circle d-flex align-items-center justify-content-center mx-auto mb-4" style="width: 100px; height: 100px;">
-                            <i class="fas fa-user-plus fa-2x" style="color: var(--primary-color);"></i>
-                        </div>
-                        <h4>1. Buat Profil</h4>
-                        <p class="text-muted">Daftar dan lengkapi profil dengan pengalaman, keterampilan dan preferensi karirmu.</p>
-                    </div>
-                </div>
-                <div class="col-md-4 text-center mb-4 mb-md-0" data-aos="fade-up" data-aos-delay="200">
-                    <div class="px-4">
-                        <div class="bg-light rounded-circle d-flex align-items-center justify-content-center mx-auto mb-4" style="width: 100px; height: 100px;">
-                            <i class="fas fa-search fa-2x" style="color: var(--primary-color);"></i>
-                        </div>
-                        <h4>2. Temukan Pekerjaan</h4>
-                        <p class="text-muted">Cari pekerjaan berdasarkan kategori, lokasi, atau perusahaan yang sesuai dengan minatmu.</p>
-                    </div>
-                </div>
-                <div class="col-md-4 text-center" data-aos="fade-up" data-aos-delay="200">
-                    <div class="px-4">
-                        <div class="bg-light rounded-circle d-flex align-items-center justify-content-center mx-auto mb-4" style="width: 100px; height: 100px;">
-                            <i class="fas fa-paper-plane fa-2x" style="color: var(--primary-color);"></i>
-                        </div>
-                        <h4>3. Lamar & Terhubung</h4>
-                        <p class="text-muted">Lamar dengan mudah dan dapatkan tawaran dari perusahaan terbaik sesuai dengan keahlianmu.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="py-5" style="background-color: var(--primary-color);">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-8 text-white" data-aos="fade-left" data-aos-delay="100">
-                    <h2 class="mb-3">Siap untuk memulai karir barumu?</h2>
-                    <p class="lead mb-0">Gabung sekarang dan temukan peluang kerja terbaik yang sesuai dengan minat dan keahlianmu.</p>
-                </div>
-                <div class="col-md-4 text-center text-md-end mt-4 mt-md-0" data-aos="fade-right" data-aos-delay="200">
-                    <a href="/signup" class="btn btn-light px-4 py-2">Daftar Sekarang</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
 </section>
 
 <!-- Tombol Back to Top -->
@@ -301,6 +175,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+          <a href="/apply" class="btn btn-success">Lamar Sekarang</a>
         </div>
       </div>
     </div>
@@ -322,6 +197,46 @@
             behavior: 'smooth'
         });
     });
+
+    // Cek token saat halaman dimuat
+    document.addEventListener('DOMContentLoaded', function () {
+        const token = localStorage.getItem('token');
+        if (!token) {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Akses Ditolak',
+            text: 'Silakan login terlebih dahulu.'
+        }).then(() => {
+            window.location.href = '/login';
+        });
+        }
+    });
+
+    // Fungsi logout
+    function logout() {
+        Swal.fire({
+            icon: 'question',
+            title: 'Konfirmasi Logout',
+            text: 'Anda yakin ingin keluar dari akun?',
+            showCancelButton: true,
+            confirmButtonText: 'Ya, keluar',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+            localStorage.removeItem('token');
+            Swal.fire({
+                icon: 'success',
+                title: 'Logout Berhasil',
+                text: 'Anda telah keluar dari akun.',
+                timer: 1500,
+                showConfirmButton: false
+            }).then(() => {
+                window.location.href = '/';
+            });
+            }
+        });
+    }
+
 </script>
 
 <%- include('partials/footer') %>
