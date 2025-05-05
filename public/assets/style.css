@@ -82,11 +82,12 @@ body {
     border: 1px solid #e0e0e0;
     padding: 20px;
     margin-bottom: 20px;
-    transition: all 0.3s;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .job-card:hover {
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
 }
 
 .company-logo {
@@ -98,21 +99,18 @@ body {
 }
 
 .badge-custom {
-    background-color: var(--light-gray);
-    color: var(--secondary-color);
-    font-weight: 500;
-    padding: 5px 10px;
-    border-radius: 4px;
+    background-color: #f0f2f5;
+    color: #333;
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 0.75rem;
     margin-right: 5px;
 }
 
-.modal-body ul {
-    padding-left: 20px;
-  }
-
-.modal-body li {
-    margin-bottom: 6px;
-}  
+.modal-body ul li {
+    margin-bottom: 5px;
+    line-height: 1.6;
+}
 
 .footer {
     background-color: var(--secondary-color);
@@ -283,3 +281,16 @@ body {
         display: flex !important;
     } */
 }
+
+@media (max-width: 576px) {
+    .hero-section h1 {
+        font-size: 1.75rem;
+    }
+    .job-card {
+        font-size: 0.9rem;
+    }
+    .salary {
+        font-size: 1rem;
+    }
+}
+

@@ -1,22 +1,42 @@
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light navbar-custom fixed-top">
+<nav class="navbar navbar-expand-lg navbar-light navbar-custom fixed-top shadow-sm">
     <div class="container">
-        <!-- BRAND -->
-        <a class="navbar-brand fw-bold" href="/">
-            <img src="/assets/img/favicon3.png" alt="Logo KarirKu" width="25" height="25">
+        <!-- Brand -->
+        <a class="navbar-brand fw-bold d-flex align-items-center" href="/">
+            <img src="/assets/img/favicon3.png" alt="Logo KarirKu" width="25" height="25" class="me-2">
             <span style="color: var(--primary-color);">Karir</span><span style="color: var(--secondary-color);">Ku</span>
         </a>
-        <!-- BURGER MENU -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+
+        <!-- Toggler -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto"></ul>
-            <div class="d-flex">
-                <!-- <a href="/login" class="btn btn-outline-custom me-2">Masuk</a>
-                <a href="/signup" class="btn btn-primary-custom">Daftar</a> -->
-                <button onclick="logout()" class="btn btn-danger me-2">Logout</button>
-            </div>
+
+        <!-- Navbar Content -->
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
+            <!-- Left Menu -->
+            <ul class="navbar-nav ms-3">
+                <li class="nav-item">
+                    <a class="nav-link" href="/riwayat">Riwayat Lamaran</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/biodata">Biodata</a>
+                </li>
+            </ul>
+
+            <!-- Right Menu with Profile -->
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown">
+                        <i class="fas fa-user-circle fa-lg me-1"></i> <span class="d-none d-md-inline">Halo, <strong>Ridho</strong></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="/biodata"><i class="fas fa-cog me-2"></i>Kelola Akun</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item text-danger" href="#" onclick="logout()"><i class="fas fa-sign-out-alt me-2"></i>Keluar</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
     </div>
-</nav>
+</nav>  
