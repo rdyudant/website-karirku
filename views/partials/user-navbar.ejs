@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-lg navbar-light navbar-custom fixed-top shadow-sm">
     <div class="container">
         <!-- Brand -->
-        <a class="navbar-brand fw-bold d-flex align-items-center" href="/">
+        <a class="navbar-brand fw-bold d-flex align-items-center" href="/user-index">
             <img src="/assets/img/favicon3.png" alt="Logo KarirKu" width="25" height="25" class="me-2">
             <span style="color: var(--primary-color);">Karir</span><span style="color: var(--secondary-color);">Ku</span>
         </a>
@@ -17,10 +17,10 @@
             <!-- Left Menu -->
             <ul class="navbar-nav ms-3">
                 <li class="nav-item">
-                    <a class="nav-link" href="/riwayat">Riwayat Lamaran</a>
+                    <a class="nav-link <%= activePage === 'user-riwayat' ? 'active-nav' : '' %>" href="/user-riwayat">Riwayat Lamaran</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/biodata">Biodata</a>
+                    <a class="nav-link <%= activePage === 'user-biodata' ? 'active-nav' : '' %>" href="/user-biodata">Biodata</a>
                 </li>
             </ul>
 
@@ -31,7 +31,7 @@
                         <i class="fas fa-user-circle fa-lg me-1"></i> <span class="d-none d-md-inline">Halo, <strong>Ridho</strong></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="/biodata"><i class="fas fa-cog me-2"></i>Kelola Akun</a></li>
+                        <li><a class="dropdown-item" href="/user-akun"><i class="fas fa-cog me-2"></i>Kelola Akun</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item text-danger" href="#" onclick="logout()"><i class="fas fa-sign-out-alt me-2"></i>Keluar</a></li>
                     </ul>

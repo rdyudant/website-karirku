@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <%- include('partials/header') %>
+</head>
+<body>
+    <!-- Loading Spinner -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+    </div>
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress-container">
+        <div id="scroll-progress-bar"></div>
+    </div>
+
+<%- include('partials/user-navbar') %>
+
+<main class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow rounded-4">
+                <div class="card-header bg-white border-bottom d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">
+                        <i class="fas fa-edit me-2" style="color: var(--primary-color);"></i>Edit Biodata
+                    </h5>
+                    <a href="/user-biodata" class="btn btn-outline-custom btn-sm">
+                        <i class="fas fa-arrow-left me-1"></i>Kembali
+                    </a>
+                </div>
+                <div class="card-body">
+                    <form id="formEditBiodata">
+                        <div class="mb-3">
+                            <label for="nama" class="form-label">Nama Lengkap</label>
+                            <input type="text" class="form-control" id="nama" name="nama" value="Ridho" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" value="ridho@example.com" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="hp" class="form-label">Nomor HP</label>
+                            <input type="text" class="form-control" id="hp" name="hp" value="081234567890">
+                        </div>
+                        <div class="mb-3">
+                            <label for="tgl_lahir" class="form-label">Tanggal Lahir</label>
+                            <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir" value="2000-05-15">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Jenis Kelamin</label>
+                            <select class="form-select" name="gender" id="gender">
+                            <option value="Laki-laki" selected>Laki-laki</option>
+                            <option value="Perempuan">Perempuan</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="alamat" class="form-label">Alamat</label>
+                            <textarea class="form-control" id="alamat" name="alamat" rows="3">Jl. Merdeka No. 123, Jakarta</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="pendidikan" class="form-label">Pendidikan Terakhir</label>
+                            <input type="text" class="form-control" id="pendidikan" name="pendidikan" value="S1 Teknik Informatika">
+                        </div>
+                        <div class="mb-3">
+                            <label for="pengalaman" class="form-label">Pengalaman Kerja</label>
+                            <textarea class="form-control" id="pengalaman" name="pengalaman" rows="3">1 Tahun sebagai Front-End Developer di PT Contoh</textarea>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary-custom">
+                                <i class="fas fa-save me-2"></i>Simpan
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+  
+<!-- Tombol Back to Top -->
+<button id="backToTop" title="Kembali ke atas">
+    <i class="fas fa-chevron-up"></i>
+</button>
+  
+<script>
+    // Tombol Back to Top
+    const backToTopBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 100) {
+            backToTopBtn.style.display = 'flex';
+        } else {
+            backToTopBtn.style.display = 'none';
+        }
+    });
+    backToTopBtn.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // Siapkan event listener untuk submit form
+    document.getElementById('formEditBiodata').addEventListener('submit', function(e) {
+      e.preventDefault();
+      // Kode AJAX ke backend akan disiapkan di sini
+      Swal.fire({
+        icon: 'info',
+        title: 'Belum Terhubung',
+        text: 'Fungsi simpan belum terhubung ke API.',
+        confirmButtonText: 'Okeh'
+        });
+    });
+
+    // Cek token saat halaman dimuat
+    document.addEventListener('DOMContentLoaded', function () {
+        const token = localStorage.getItem('token');
+        if (!token) {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Akses Ditolak',
+            text: 'Silakan login terlebih dahulu.'
+        }).then(() => {
+            window.location.href = '/login';
+        });
+        }
+    });
+
+    // Fungsi logout
+    function logout() {
+        Swal.fire({
+            icon: 'question',
+            title: 'Konfirmasi Logout',
+            text: 'Anda yakin ingin keluar dari akun?',
+            showCancelButton: true,
+            confirmButtonText: 'Ya, keluar',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+            localStorage.removeItem('token');
+            Swal.fire({
+                icon: 'success',
+                title: 'Logout Berhasil',
+                text: 'Anda telah keluar dari akun.',
+                timer: 1500,
+                showConfirmButton: false
+            }).then(() => {
+                window.location.href = '/';
+            });
+            }
+        });
+    }
+
+</script>
+
+<%- include('partials/footer') %>
+
+</body>
+</html>
