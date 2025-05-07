@@ -19,8 +19,14 @@ app.get('/login', (req, res) => {
 app.get('/signup', (req, res) => {
     res.render('signup', { title: 'KarirKu - Daftar' });
 });
+app.get('/detail-loker', (req, res) => {
+    res.render('detail-loker', { title: 'KarirKu - Detail Lowongan' });
+});
 app.get('/user-index', (req, res) => {
     res.render('user-index', { activePage: 'user-index', title: 'KarirKu - Selamat Datang' });
+});
+app.get('/user-detail-loker', (req, res) => {
+    res.render('user-detail-loker', { activePage: 'user-detail-loker', title: 'KarirKu - Detail Lowongan' });
 });
 app.get('/user-riwayat', (req, res) => {
     res.render('user-riwayat', { activePage: 'user-riwayat', title: 'KarirKu - Riwayat Lamaran' });

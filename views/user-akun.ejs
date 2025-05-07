@@ -15,78 +15,60 @@
 
 <%- include('partials/user-navbar') %>
 
-<div class="container py-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card shadow rounded-4">
-                <div class="card-header text-white rounded-top-4 text-center" style="background-color: var(--primary-color);">
-                    <h5 class="mb-0"><i class="fas fa-user-cog me-2"></i>Kelola Akun - Ubah Password</h5>
-                </div>
-                <div class="card-body">
-                    <form id="formUbahPassword">
-                        <div class="mb-3">
-                            <label for="oldPassword" class="form-label">Password Lama</label>
-                            <div class="input-group">
-                                <input type="password" class="form-control" id="oldPassword" placeholder="Masukkan password lama" required>
-                                <button class="btn btn-outline-secondary toggle-password" type="button" data-target="#oldPassword">
-                                    <i class="fa fa-eye"></i>
+<section class="background-section">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow rounded-4">
+                    <div class="card-header text-white rounded-top-4 text-center" style="background-color: var(--primary-color);">
+                        <h5 class="mb-0"><i class="fas fa-user-cog me-2"></i>Kelola Akun - Ubah Password</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="formUbahPassword">
+                            <div class="mb-3">
+                                <label for="oldPassword" class="form-label">Password Lama</label>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="oldPassword" placeholder="Masukkan password lama" required>
+                                    <button class="btn btn-outline-secondary toggle-password" type="button" data-target="#oldPassword">
+                                        <i class="fa fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="newPassword" class="form-label">Password Baru</label>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="newPassword" placeholder="Masukkan password baru" required>
+                                    <button class="btn btn-outline-secondary toggle-password" type="button" data-target="#newPassword">
+                                        <i class="fa fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="confirmPassword" class="form-label">Konfirmasi Password Baru</label>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="confirmPassword" placeholder="Ulangi password baru" required>
+                                    <button class="btn btn-outline-secondary toggle-password" type="button" data-target="#confirmPassword">
+                                        <i class="fa fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary-custom rounded">
+                                    <i class="fas fa-save me-2"></i>Simpan
                                 </button>
                             </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="newPassword" class="form-label">Password Baru</label>
-                            <div class="input-group">
-                                <input type="password" class="form-control" id="newPassword" placeholder="Masukkan password baru" required>
-                                <button class="btn btn-outline-secondary toggle-password" type="button" data-target="#newPassword">
-                                    <i class="fa fa-eye"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="confirmPassword" class="form-label">Konfirmasi Password Baru</label>
-                            <div class="input-group">
-                                <input type="password" class="form-control" id="confirmPassword" placeholder="Ulangi password baru" required>
-                                <button class="btn btn-outline-secondary toggle-password" type="button" data-target="#confirmPassword">
-                                    <i class="fa fa-eye"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-primary-custom rounded-pill">
-                                <i class="fas fa-save me-2"></i>Simpan
-                            </button>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>    
-  
-<!-- Tombol Back to Top -->
-<button id="backToTop" title="Kembali ke atas">
-    <i class="fas fa-chevron-up"></i>
-</button>
 
 <%- include('partials/footer') %>
+
+</section>
   
 <script>
-    // Tombol Back to Top
-    const backToTopBtn = document.getElementById('backToTop');
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 100) {
-            backToTopBtn.style.display = 'flex';
-        } else {
-            backToTopBtn.style.display = 'none';
-        }
-    });
-    backToTopBtn.addEventListener('click', function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-
     // Cek token saat halaman dimuat
     document.addEventListener('DOMContentLoaded', function () {
         const token = localStorage.getItem('token');
