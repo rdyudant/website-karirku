@@ -68,10 +68,21 @@ body {
     background-color: white;
 }
 
+.company-logo {
+    max-height: 60px;
+    object-fit: contain;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    /* padding: 8px; */
+    box-shadow: 0 0 4px rgba(0,0,0,0.05);
+  }  
+
 .category-card {
     border-radius: 12px;
     transition: all 0.3s;
     border: 1px solid #e0e0e0;
+    background-color: white;
     padding: 20px;
     margin-bottom: 20px;
     text-align: center;
@@ -93,14 +104,6 @@ body {
 .job-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-}
-
-.company-logo {
-    width: 60px;
-    height: 60px;
-    border-radius: 8px;
-    object-fit: cover;
-    border: 1px solid #e0e0e0;
 }
 
 .badge-custom {
@@ -151,8 +154,8 @@ body {
 .featured-companies img {
     max-width: 120px;
     max-height: 60px;
-    filter: grayscale(100%);
-    opacity: 0.7;
+    filter: grayscale(75%);
+    opacity: 0.75;
     transition: all 0.3s;
 }
 
