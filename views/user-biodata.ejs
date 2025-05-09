@@ -60,6 +60,20 @@
                         <label class="form-label text-muted">Pengalaman Kerja</label>
                         <p class="fs-5 fw-semibold">1 Tahun sebagai Front-End Developer di PT Contoh</p>
                     </div>
+                    <div class="mb-4">
+                        <label class="form-label text-muted">Pas Foto</label>
+                        <div>
+                            <img src="/uploads/IMG_9402.jpg" alt="Pas Foto" class="img-thumbnail" style="max-width: 150px;">
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label text-muted">CV / Curriculum Vitae</label>
+                        <div>
+                            <a href="/uploads/CV_RDY.pdf" target="_blank" class="btn btn-sm btn-outline-custom">
+                                <i class="fas fa-file-pdf me-1"></i> Lihat CV
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -71,63 +85,7 @@
     <i class="fas fa-chevron-up"></i>
 </button>
   
-<script>
-    // Tombol Back to Top
-    const backToTopBtn = document.getElementById('backToTop');
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 100) {
-            backToTopBtn.style.display = 'flex';
-        } else {
-            backToTopBtn.style.display = 'none';
-        }
-    });
-    backToTopBtn.addEventListener('click', function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-
-    // Cek token saat halaman dimuat
-    document.addEventListener('DOMContentLoaded', function () {
-        const token = localStorage.getItem('token');
-        if (!token) {
-        Swal.fire({
-            icon: 'warning',
-            title: 'Akses Ditolak',
-            text: 'Silakan login terlebih dahulu.'
-        }).then(() => {
-            window.location.href = '/login';
-        });
-        }
-    });
-
-    // Fungsi logout
-    function logout() {
-        Swal.fire({
-            icon: 'question',
-            title: 'Konfirmasi Logout',
-            text: 'Anda yakin ingin keluar dari akun?',
-            showCancelButton: true,
-            confirmButtonText: 'Ya, keluar',
-            cancelButtonText: 'Batal'
-        }).then((result) => {
-            if (result.isConfirmed) {
-            localStorage.removeItem('token');
-            Swal.fire({
-                icon: 'success',
-                title: 'Logout Berhasil',
-                text: 'Anda telah keluar dari akun.',
-                timer: 1500,
-                showConfirmButton: false
-            }).then(() => {
-                window.location.href = '/';
-            });
-            }
-        });
-    }
-
-</script>
+<script src="assets/user.js"></script>
 
 <%- include('partials/footer') %>
 

@@ -29,8 +29,13 @@
                             <div class="row g-2">
                                 <div class="col-md-10">
                                     <div class="input-group">
-                                        <span class="input-group-text bg-white border-end-0"><i class="fas fa-search"></i></span>
+                                        <span class="input-group-text bg-white border-end-0">
+                                            <i class="fas fa-search"></i>
+                                        </span>
                                         <input type="text" class="form-control border-start-0" id="keyword" placeholder="Posisi atau kata kunci lain">
+                                        <button type="button" class="input-group-text bg-white border-start-0 d-none" id="clearKeyword">
+                                            <i class="fas fa-times text-muted"></i>
+                                        </button>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
@@ -47,6 +52,7 @@
             <!-- Hasil pencarian ditampilkan di sini -->
             <div id="searchResults" class="mt-4"></div>
         </div>
+        <script src="assets/search.js"></script>  
     </section>
 
     <!-- Featured Companies -->
@@ -190,6 +196,22 @@
                 </button>
             </div>
         </div>
+        <script>
+            // Lihat Kategori
+            const btn = document.getElementById('showMoreBtn');
+            const more = document.getElementById('moreCategories');
+        
+            btn.addEventListener('click', function () {
+                if (more.classList.contains('d-none')) {
+                more.classList.remove('d-none');
+                btn.innerHTML = '<i class="fas fa-chevron-up me-2"></i>Sembunyikan Kategori';
+                AOS.refresh(); // ← penting: beri tahu AOS untuk update posisi elemen
+                } else {
+                more.classList.add('d-none');
+                btn.innerHTML = '<i class="fas fa-chevron-down me-2"></i>Lihat Semua Kategori';
+                }
+            });
+        </script>
     </section>
 
     <!-- Featured Jobs -->
@@ -308,7 +330,7 @@
                             <i class="fas fa-paper-plane fa-2x" style="color: var(--primary-color);"></i>
                         </div>
                         <h4>3. Lamar & Terhubung</h4>
-                        <p class="text-muted">Lamar dengan mudah dan dapatkan tawaran terbaik sesuai dengan keahlianmu.</p>
+                        <p class="text-muted">Lamar dengan mudah dan dapatkan tawaran pekerjaan terbaik.</p>
                     </div>
                 </div>
             </div>
@@ -369,88 +391,6 @@
       </div>
     </div>
   </div> -->
-  
-<script>
-    // Tombol Back to Top
-    const backToTopBtn = document.getElementById('backToTop');
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 100) {
-            backToTopBtn.style.display = 'flex';
-        } else {
-            backToTopBtn.style.display = 'none';
-        }
-    });
-    backToTopBtn.addEventListener('click', function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-
-    // Loading Pencarian
-    $('#searchForm').on('submit', function(e) {
-        e.preventDefault();
-
-        const keyword = $('#keyword').val().trim();
-        const btn = $('#btnSearch');
-
-        // Tampilkan loading
-        btn.prop('disabled', true);
-        btn.html('<i class="fas fa-spinner fa-spin me-2"></i>');
-
-        if (!keyword) {
-        $('#searchResults').html('<p class="text-muted mt-2">Masukkan kata kunci terlebih dahulu.</p>');
-        btn.prop('disabled', false).html('Cari');
-        return;
-        }
-
-        $.ajax({
-        url: '/api/search',
-        type: 'GET',
-        data: { q: keyword },
-        dataType: 'json',
-        success: function(data) {
-            let html = '';
-            if (data.length > 0) {
-            data.forEach(job => {
-                html += `
-                <div class="card mb-3">
-                    <div class="card-body">
-                    <h5 class="card-title">${job.title}</h5>
-                    <p class="card-text">${job.company} - ${job.location}</p>
-                    </div>
-                </div>`;
-            });
-            } else {
-            html = '<p class="text-muted mt-2">Tidak ada hasil untuk kata kunci tersebut.</p>';
-            }
-            $('#searchResults').html(html);
-        },
-        error: function() {
-            $('#searchResults').html('<p class="text-danger mt-2">Terjadi kesalahan saat mencari data.</p>');
-        },
-        complete: function() {
-            btn.prop('disabled', false);
-            btn.html('Cari');
-        }
-        });
-    });
-
-    // Lihat Kategori
-    const btn = document.getElementById('showMoreBtn');
-    const more = document.getElementById('moreCategories');
-
-    btn.addEventListener('click', function () {
-        if (more.classList.contains('d-none')) {
-        more.classList.remove('d-none');
-        btn.innerHTML = '<i class="fas fa-chevron-up me-2"></i>Sembunyikan Kategori';
-        AOS.refresh(); // ← penting: beri tahu AOS untuk update posisi elemen
-        } else {
-        more.classList.add('d-none');
-        btn.innerHTML = '<i class="fas fa-chevron-down me-2"></i>Lihat Semua Kategori';
-        }
-    });
-</script>
 
 <%- include('partials/footer') %>
 

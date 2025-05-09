@@ -29,27 +29,27 @@
                                 <label for="oldPassword" class="form-label">Password Lama</label>
                                 <div class="input-group">
                                     <input type="password" class="form-control" id="oldPassword" placeholder="Masukkan password lama" required>
-                                    <button class="btn btn-outline-secondary toggle-password" type="button" data-target="#oldPassword">
-                                        <i class="fa fa-eye"></i>
-                                    </button>
+                                    <span class="input-group-text bg-white border-start-0">
+                                        <i class="fa fa-eye toggle-password" data-target="#oldPassword" style="cursor: pointer;"></i>
+                                    </span>
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label for="newPassword" class="form-label">Password Baru</label>
                                 <div class="input-group">
                                     <input type="password" class="form-control" id="newPassword" placeholder="Masukkan password baru" required>
-                                    <button class="btn btn-outline-secondary toggle-password" type="button" data-target="#newPassword">
-                                        <i class="fa fa-eye"></i>
-                                    </button>
+                                    <span class="input-group-text bg-white border-start-0">
+                                        <i class="fa fa-eye toggle-password" data-target="#newPassword" style="cursor: pointer;"></i>
+                                    </span>
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label for="confirmPassword" class="form-label">Konfirmasi Password Baru</label>
                                 <div class="input-group">
                                     <input type="password" class="form-control" id="confirmPassword" placeholder="Ulangi password baru" required>
-                                    <button class="btn btn-outline-secondary toggle-password" type="button" data-target="#confirmPassword">
-                                        <i class="fa fa-eye"></i>
-                                    </button>
+                                    <span class="input-group-text bg-white border-start-0">
+                                        <i class="fa fa-eye toggle-password" data-target="#confirmPassword" style="cursor: pointer;"></i>
+                                    </span>
                                 </div>
                             </div>
                             <div class="d-grid">
@@ -67,22 +67,9 @@
 <%- include('partials/footer') %>
 
 </section>
-  
-<script>
-    // Cek token saat halaman dimuat
-    document.addEventListener('DOMContentLoaded', function () {
-        const token = localStorage.getItem('token');
-        if (!token) {
-        Swal.fire({
-            icon: 'warning',
-            title: 'Akses Ditolak',
-            text: 'Silakan login terlebih dahulu.'
-        }).then(() => {
-            window.location.href = '/login';
-        });
-        }
-    });
 
+<script src="assets/user.js"></script>
+<script>
     // Validasi Password
     document.addEventListener('DOMContentLoaded', () => {
         const form = document.getElementById('formUbahPassword');
@@ -135,32 +122,6 @@
         text: 'Fungsi ubah password belum terhubung ke API.',
         });
     });
-
-    // Fungsi logout
-    function logout() {
-        Swal.fire({
-            icon: 'question',
-            title: 'Konfirmasi Logout',
-            text: 'Anda yakin ingin keluar dari akun?',
-            showCancelButton: true,
-            confirmButtonText: 'Ya, keluar',
-            cancelButtonText: 'Batal'
-        }).then((result) => {
-            if (result.isConfirmed) {
-            localStorage.removeItem('token');
-            Swal.fire({
-                icon: 'success',
-                title: 'Logout Berhasil',
-                text: 'Anda telah keluar dari akun.',
-                timer: 1500,
-                showConfirmButton: false
-            }).then(() => {
-                window.location.href = '/';
-            });
-            }
-        });
-    }
-
 </script>
 
 </body>

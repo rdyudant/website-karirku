@@ -29,25 +29,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Fitur bookmark tombol
-    const bookmarkButtons = document.querySelectorAll('.btn-outline-secondary');
-    bookmarkButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const icon = this.querySelector('i');
-            if (icon.classList.contains('far')) {
-                icon.classList.remove('far');
-                icon.classList.add('fas');
-                this.classList.remove('btn-outline-secondary');
-                this.classList.add('btn-secondary');
-            } else {
-                icon.classList.remove('fas');
-                icon.classList.add('far');
-                this.classList.remove('btn-secondary');
-                this.classList.add('btn-outline-secondary');
-            }
-        });
-    });
-
     // Animasi hover di category card
     const categoryCards = document.querySelectorAll('.category-card');
     categoryCards.forEach(card => {
@@ -77,3 +58,47 @@ window.addEventListener('scroll', function() {
     const scrollPercent = (scrollTop / docHeight) * 100;
     scrollBar.style.width = `${scrollPercent}%`;
 });    
+
+// Hide Password
+document.querySelectorAll('.toggle-password').forEach(function (icon) {
+    icon.addEventListener('click', function () {
+        const target = document.querySelector(this.getAttribute('data-target'));
+        const type = target.getAttribute('type') === 'password' ? 'text' : 'password';
+        target.setAttribute('type', type);
+        this.classList.toggle('fa-eye');
+        this.classList.toggle('fa-eye-slash');
+    });
+});
+
+// Animation Of Scroll
+AOS.init({
+    duration: 800, // Durasi animasi dalam ms
+    once: true     // Animasi hanya jalan sekali (tidak diulang saat scroll balik)
+});
+
+// Tombol Back to Top
+const backToTopBtn = document.getElementById('backToTop');
+window.addEventListener('scroll', function() {
+    if (window.scrollY > 100) {
+        backToTopBtn.style.display = 'flex';
+    } else {
+        backToTopBtn.style.display = 'none';
+    }
+});
+backToTopBtn.addEventListener('click', function() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+
+// Efek title berjalan
+// let titleText = document.title + " || ";
+// let scrollPos = 0;
+
+// function scrollTitle() {
+//     document.title = titleText.substring(scrollPos) + titleText.substring(0, scrollPos);
+//     scrollPos = (scrollPos + 1) % titleText.length;
+//     setTimeout(scrollTitle, 200); // kecepatan scroll
+// }
+// scrollTitle();

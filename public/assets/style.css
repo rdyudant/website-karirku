@@ -6,7 +6,67 @@
 
 body {
     font-family: 'Inter', sans-serif;
-  }  
+}
+
+/* Drop or Upload */
+.drop-container {
+  background-color: #fff;
+  position: relative;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px dashed gray;
+  color: #444;
+  cursor: pointer;
+  transition: background .2s ease-in-out, border .2s ease-in-out;
+}
+
+/* .drop-container:hover {
+  background: greenyellow;
+  border-color: rgba(17, 17, 17, 0.616);
+} */
+
+.drop-container:hover .drop-title {
+  color: #222;
+}
+
+.drop-title {
+  color: #444;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  transition: color .2s ease-in-out;
+}
+
+#file-input {
+  width: 350px;
+  max-width: 100%;
+  color: #444;
+  padding: 2px;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid rgba(8, 8, 8, 0.288);
+}
+
+#file-input::file-selector-button {
+  margin-right: 20px;
+  border-color: var(--primary-color);
+  background: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  color: var(--primary-color);
+  cursor: pointer;
+  transition: background .2s ease-in-out;
+}
+
+#file-input::file-selector-button:hover {
+  background: var(--primary-color);
+  color: white;
+}
 
 .background-section {
     background-image: url('/assets/img/background.jpg');
@@ -21,7 +81,7 @@ body {
 .active-nav {
     color: var(--primary-color) !important;
     font-weight: bold;
-  }
+}
   
 .navbar-custom {
     background-color: white;
@@ -30,6 +90,18 @@ body {
     position: sticky;
     top: 0;
 }
+
+#typed-text {
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+    font-weight: bolder;
+}
+@media (max-width: 991.98px) {
+    .typed-cursor {
+      display: none !important;
+    }
+  }
+  
 
 .btn-primary-custom {
     background-color: var(--primary-color);

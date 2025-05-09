@@ -64,6 +64,24 @@
                             <label for="pengalaman" class="form-label">Pengalaman Kerja</label>
                             <textarea class="form-control" id="pengalaman" name="pengalaman" rows="3">1 Tahun sebagai Front-End Developer di PT Contoh</textarea>
                         </div>
+                        <div class="mb-3">
+                            <label for="pasfoto" class="form-label">Pas Foto</label>
+                            <input type="file" class="form-control" id="pasfoto" name="pasfoto" accept="image/*">
+                            <!-- <label for="file-input" class="drop-container" id="drop-area">
+                                <span class="drop-title">Letakkan file disini</span>
+                                atau
+                                <input type="file" accept="image/*" id="file-input" name="pasfoto">
+                            </label> -->
+                        </div>
+                        <div class="mb-3">
+                            <label for="cv" class="form-label">CV / Curriculum Vitae (PDF)</label>
+                            <input type="file" class="form-control" id="cv" name="cv" accept=".pdf">
+                            <!-- <label for="file-input" class="drop-container" id="drop-area">
+                                <span class="drop-title">Letakkan file disini</span>
+                                atau
+                                <input type="file" accept=".pdf" id="file-input" name="cv"> -->
+                            </label>
+                        </div>
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary-custom">
                                 <i class="fas fa-save me-2"></i>Simpan
@@ -82,22 +100,6 @@
 </button>
   
 <script>
-    // Tombol Back to Top
-    const backToTopBtn = document.getElementById('backToTop');
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 100) {
-            backToTopBtn.style.display = 'flex';
-        } else {
-            backToTopBtn.style.display = 'none';
-        }
-    });
-    backToTopBtn.addEventListener('click', function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-
     // Siapkan event listener untuk submit form
     document.getElementById('formEditBiodata').addEventListener('submit', function(e) {
       e.preventDefault();
@@ -109,47 +111,43 @@
         confirmButtonText: 'Okeh'
         });
     });
+    
+    // DROP FILES
+    const dropArea = document.getElementById('drop-area');
+    const fileInput = document.getElementById('file-input');
 
-    // Cek token saat halaman dimuat
-    document.addEventListener('DOMContentLoaded', function () {
-        const token = localStorage.getItem('token');
-        if (!token) {
-        Swal.fire({
-            icon: 'warning',
-            title: 'Akses Ditolak',
-            text: 'Silakan login terlebih dahulu.'
-        }).then(() => {
-            window.location.href = '/login';
-        });
-        }
+    // Hindari default browser behavior untuk seluruh dokumen
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        document.addEventListener(eventName, e => e.preventDefault());
     });
 
-    // Fungsi logout
-    function logout() {
-        Swal.fire({
-            icon: 'question',
-            title: 'Konfirmasi Logout',
-            text: 'Anda yakin ingin keluar dari akun?',
-            showCancelButton: true,
-            confirmButtonText: 'Ya, keluar',
-            cancelButtonText: 'Batal'
-        }).then((result) => {
-            if (result.isConfirmed) {
-            localStorage.removeItem('token');
-            Swal.fire({
-                icon: 'success',
-                title: 'Logout Berhasil',
-                text: 'Anda telah keluar dari akun.',
-                timer: 1500,
-                showConfirmButton: false
-            }).then(() => {
-                window.location.href = '/';
-            });
-            }
-        });
-    }
+    // Tambahkan efek saat drag-over
+    ['dragenter', 'dragover'].forEach(eventName => {
+        dropArea.addEventListener(eventName, () => dropArea.classList.add('highlight'));
+    });
 
+    ['dragleave', 'drop'].forEach(eventName => {
+        dropArea.addEventListener(eventName, () => dropArea.classList.remove('highlight'));
+    });
+
+    // Tangani file yang di-drop
+    dropArea.addEventListener('drop', function (e) {
+        const files = e.dataTransfer.files;
+        if (files.length > 0) {
+            const file = files[0];
+            if (file.type.startsWith("image/")) {
+                fileInput.files = files;
+            } else {
+                Swal.fire({
+                icon: 'error',
+                title: 'File Tidak Valid',
+                text: 'Silakan unggah file gambar (jpg, png, dll)',
+                });
+            }
+        }
+    });
 </script>
+<script src="assets/user.js"></script>
 
 <%- include('partials/footer') %>
 
