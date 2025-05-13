@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <%- include('partials/header') %>
+</head>
+<body class="background-section">
+    <!-- Loading Spinner -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+    </div>
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress-container">
+        <div id="scroll-progress-bar"></div>
+    </div>
+
+<%- include('partials/user-navbar') %>
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow rounded-4">
+                <div class="card-header bg-white border-bottom d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">
+                        <i class="fas fa-id-card me-2" style="color: var(--primary-color);"></i>Informasi Pelamar
+                    </h5>
+                    <a href="/user-edit-informasi" class="btn btn-outline-custom btn-sm">
+                        <i class="fas fa-edit me-1"></i>Ubah Informasi
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h6 class="fw-bold text-uppercase mb-3 mt-4 border-bottom pb-2">
+                        Informasi Pribadi
+                    </h6>
+                    <div class="mb-4">
+                        <label class="form-label text-muted">Email</label>
+                        <p class="fs-5 fw-semibold">ridho@example.com</p>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label text-muted">Nama Lengkap</label>
+                        <p class="fs-5 fw-semibold">Ridho Dimas</p>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label text-muted">Jenis Kelamin</label>
+                        <p class="fs-5 fw-semibold">Laki-laki</p>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label text-muted">Nomor HP</label>
+                        <p class="fs-5 fw-semibold">081234567890</p>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label text-muted">Tempat Lahir</label>
+                        <p class="fs-5 fw-semibold">Klaten</p>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label text-muted">Tanggal Lahir</label>
+                        <p class="fs-5 fw-semibold">15 Mei 2000</p>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label text-muted">Alamat Lengkap</label>
+                        <p class="fs-5 fw-semibold">Jl. Merdeka No. 123</p>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label text-muted">Desa/Kelurahan</label>
+                        <p class="fs-5 fw-semibold">Purbalingga Lor</p>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label text-muted">Kecamatan</label>
+                        <p class="fs-5 fw-semibold">Purbalingga</p>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label text-muted">Kabupaten</label>
+                        <p class="fs-5 fw-semibold">Purbalingga</p>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label text-muted">Agama</label>
+                        <p class="fs-5 fw-semibold">Islam</p>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label text-muted">Pendidikan Terakhir</label>
+                        <p class="fs-5 fw-semibold">S1</p>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label text-muted">Jurusan</label>
+                        <p class="fs-5 fw-semibold">Informatika</p>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label text-muted">Nomor KTP</label>
+                        <p class="fs-5 fw-semibold">330305211000000</p>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label text-muted">Sertifikat yang Dimiliki (opsional)</label>
+                        <p class="fs-5 fw-semibold">-</p>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label text-muted">Ketersediaan Penempatan di Purbalingga dan Sekitarnya</label>
+                        <p class="fs-5 fw-semibold">Ya, Bersedia</p>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label text-muted">Sumber Informasi Lowongan Pekerjaan Disini</label>
+                        <p class="fs-5 fw-semibold">Media Sosial Official Herba Emas Wahidatama</p>
+                    </div>
+
+                    <h6 class="fw-bold text-uppercase mb-3 mt-5 border-bottom pb-2">
+                        Pengalaman Kerja
+                    </h6>
+                    <div class="mb-4">
+                        <label class="form-label text-muted">Pengalaman Kerja Sebelumnya</label>
+                        <p class="fs-5 fw-semibold">Fresh Graduated</p>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label text-muted">Pekerjaan Sebelumnya</label>
+                        <p class="fs-5 fw-semibold">-</p>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label text-muted">Jabatan/Posisi Pekerjaan Sebelumnya</label>
+                        <p class="fs-5 fw-semibold">-</p>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label text-muted">Uraian Tugas Pekerjaan Sebelumnya</label>
+                        <p class="fs-5 fw-semibold">-</p>
+                    </div>
+
+                    <h6 class="fw-bold text-uppercase mb-3 mt-5 border-bottom pb-2">
+                        Berkas Lamaran
+                    </h6>
+                    <div class="mb-4">
+                        <label class="form-label text-muted">CV / Curriculum Vitae</label>
+                        <div>
+                            <a href="/uploads/CV_RDY.pdf" target="_blank" class="btn btn-sm btn-outline-custom">
+                                <i class="fas fa-file-pdf me-1"></i> Lihat CV
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label text-muted">Kartu Tanda Penduduk</label>
+                        <div>
+                            <a href="/uploads/CV_RDY.pdf" target="_blank" class="btn btn-sm btn-outline-custom">
+                                <i class="fas fa-file-pdf me-1"></i> Lihat KTP
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label text-muted">Ijazah Terakhir</label>
+                        <div>
+                            <a href="/uploads/CV_RDY.pdf" target="_blank" class="btn btn-sm btn-outline-custom">
+                                <i class="fas fa-file-pdf me-1"></i> Lihat Ijazah
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label text-muted">Kartu Keluarga</label>
+                        <div>
+                            <a href="/uploads/CV_RDY.pdf" target="_blank" class="btn btn-sm btn-outline-custom">
+                                <i class="fas fa-file-pdf me-1"></i> Lihat KK
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label text-muted">Surat / Dokumen Pendukung Lain</label>
+                        <div>
+                            <a href="/uploads/CV_RDY.pdf" target="_blank" class="btn btn-sm btn-outline-custom">
+                                <i class="fas fa-file-pdf me-1"></i> Lihat Surat
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  
+<!-- Tombol Back to Top -->
+<button id="backToTop" title="Kembali ke atas">
+    <i class="fas fa-chevron-up"></i>
+</button>
+  
+<script src="assets/user.js"></script>
+
+<%- include('partials/footer') %>
+
+</body>
+</html>

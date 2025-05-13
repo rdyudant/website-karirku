@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <%- include('partials/header') %>
+</head>
+<body class="background-section">
+    <!-- Loading Spinner -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+    </div>
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress-container">
+        <div id="scroll-progress-bar"></div>
+    </div>
+
+<%- include('partials/user-navbar') %>
+
+<main class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm rounded-4">
+                <div class="card-body p-4">
+
+                    <h5 class="fw-bold mb-3">Kepada Pelamar,</h5>
+
+                    <p>Terima kasih atas ketertarikan Anda untuk bergabung dengan <strong>PT. Herba Emas Wahidatama</strong>, sebuah perusahaan multi nasional yang bergerak di bidang Industri Obat Tradisional, yang dikelola secara syar’i, dengan mengacu pada standar <strong>GMP</strong> (Good Manufacturing Practice) yang berkantor pusat di Purbalingga, Jawa Tengah.</p>
+                    <p>Di Herba Emas, kami mengutamakan budaya inovasi, kolaborasi, dan pertumbuhan berkelanjutan. Kami menghargai keragaman, kreativitas, dan dedikasi anggota tim kami, serta mendorong lingkungan dimana ide-ide berkembang dan keunggulan dirayakan.</p>
+                    <p>Silakan lengkapi formulir aplikasi berikut untuk dipertimbangkan sebagai kandidat di perusahaan kami. Jawaban Anda akan membantu kami memahami kualifikasi dan kecocokan Anda dengan organisasi kami.</p>
+
+                    <h5 class="fw-bold mt-4 mb-3">Cara Mengirimkan Lamaran Melalui Website</h5>
+
+                    <p>1. Pastikan Anda sudah mengisi informasi secara detail pada halaman <strong>Informasi Pelamar</strong>, meliputi:</p>
+
+                    <ul class="mb-4">
+                        <li><strong>Informasi Pribadi:</strong> Isi detail pribadi Anda dengan akurat termasuk informasi pendidikan, kontak, dan lainnya.</li>
+                        <li><strong>Pengalaman Kerja:</strong> Daftar pengalaman kerja sebelumnya termasuk nama perusahaan, posisi yang dipegang, periode kerja, dan tanggung jawab utama.</li>
+                        <li><strong>Berkas Lamaran:</strong> Unggah berkas kelengkapan sesuai dengan yang diminta, seperti KTP, KK, Ijazah, dan CV.</li>
+                    </ul>
+
+                    <p>2. Pilih posisi yang ingin Anda lamar melalui bagian <strong>Lowongan Terbaru</strong> di halaman utama <strong>KarirKu</strong>, kemudian tekan tombol Lamar Sekarang.</p>
+                    <p>3. Bila ingin mengetahui seluruh lamaran yang sudah dilakukan, Anda bisa melihatnya pada halaman <strong>Riwayat Lamaran</strong>.</p>
+
+                    <p class="mt-4">Terima kasih atas ketertarikan Anda untuk menjadi bagian dari <strong>Herba Emas Wahidatama</strong>. Kami menantikan untuk meninjau berkas lamaran Anda dan menemukan bagaimana keterampilan serta pengalaman Anda selaras dengan visi dan nilai-nilai perusahaan kami.</p>
+
+                    <p class="mt-5 mb-1">Salam terbaik,</p>
+                    <p class="fw-bold mb-0">Tim Human Experience</p>
+                    <p class="fw-bold">HERBA EMAS WAHIDATAMA</p>
+
+                    <div class="d-flex justify-content-end mt-4">
+                        <a href="javascript: history.back()" class="btn btn-outline-custom">
+                            <i class="fas fa-arrow-left me-2"></i>Kembali
+                        </a>
+                        <a href="/user-informasi" class="btn btn-primary-custom ms-3">
+                            <i class="fas fa-arrow-right me-2"></i>Lengkapi Informasi 
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+  
+<!-- Tombol Back to Top -->
+<button id="backToTop" title="Kembali ke atas">
+    <i class="fas fa-chevron-up"></i>
+</button>
+  
+<script src="assets/user.js"></script>
+
+<%- include('partials/footer') %>
+
+</body>
+</html>

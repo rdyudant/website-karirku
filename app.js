@@ -11,34 +11,37 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routing
 app.get('/', (req, res) => {
-    res.render('index', { title: 'KarirKu - Herba Emas Wahidatama' });
+    res.render('index', { title: 'KarirKu | Herba Emas Wahidatama' });
 });
 app.get('/login', (req, res) => {
-    res.render('login', { title: 'KarirKu - Masuk' });
+    res.render('login', { title: 'KarirKu | Masuk' });
 });
 app.get('/signup', (req, res) => {
-    res.render('signup', { title: 'KarirKu - Daftar' });
+    res.render('signup', { title: 'KarirKu | Daftar' });
 });
 app.get('/detail-loker', (req, res) => {
-    res.render('detail-loker', { title: 'KarirKu - Detail Lowongan' });
+    res.render('detail-loker', { title: 'KarirKu | Detail Lowongan' });
 });
 app.get('/user-index', (req, res) => {
-    res.render('user-index', { activePage: 'user-index', title: 'KarirKu - Selamat Datang' });
+    res.render('user-index', { activePage: 'user-index', title: 'Selamat Datang | KarirKu' });
 });
 app.get('/user-detail-loker', (req, res) => {
-    res.render('user-detail-loker', { activePage: 'user-detail-loker', title: 'KarirKu - Detail Lowongan' });
+    res.render('user-detail-loker', { activePage: 'user-detail-loker', title: 'Detail Lowongan | KarirKu' });
+});
+app.get('/user-cara-melamar', (req, res) => {
+  res.render('user-cara-melamar', { activePage: 'user-cara-melamar', title: 'Panduan Melamar | KarirKu' });
+});
+app.get('/user-informasi', (req, res) => {
+    res.render('user-informasi', { activePage: 'user-informasi', title: 'Informasi Pelamar | KarirKu' });
 });
 app.get('/user-riwayat', (req, res) => {
-    res.render('user-riwayat', { activePage: 'user-riwayat', title: 'KarirKu - Riwayat Lamaran' });
+    res.render('user-riwayat', { activePage: 'user-riwayat', title: 'Riwayat Lamaran | KarirKu' });
 });
-app.get('/user-biodata', (req, res) => {
-    res.render('user-biodata', { activePage: 'user-biodata', title: 'KarirKu - Biodata' });
-});
-app.get('/user-edit-biodata', (req, res) => {
-    res.render('user-edit-biodata', { activePage: 'user-biodata', title: 'KarirKu - Edit Biodata' });
+app.get('/user-edit-informasi', (req, res) => {
+    res.render('user-edit-informasi', { activePage: 'user-informasi', title: 'Ubah Informasi | KarirKu' });
 });
 app.get('/user-akun', (req, res) => {
-    res.render('user-akun', { activePage: 'user-akun', title: 'KarirKu - Kelola Akun' });
+    res.render('user-akun', { activePage: 'user-akun', title: 'Kelola Akun | KarirKu' });
 });
 app.get('/api/search', (req, res) => {
     const q = req.query.q.toLowerCase();
