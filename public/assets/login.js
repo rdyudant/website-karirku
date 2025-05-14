@@ -40,7 +40,7 @@ function login() {
             showConfirmButton: false
         }).then(() => {
             localStorage.setItem("token", data.token);
-            window.location.href = "/user-index";
+            window.location.href = "/user-cara-melamar";
         });
       }
     },

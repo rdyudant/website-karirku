@@ -8,6 +8,10 @@ body {
     font-family: 'Inter', sans-serif;
 }
 
+html, body {
+    max-width: 100%;
+}
+
 /* Drop or Upload */
 
 #file-input {
