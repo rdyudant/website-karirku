@@ -39,8 +39,9 @@ function login() {
             timer: 1500,
             showConfirmButton: false
         }).then(() => {
-            localStorage.setItem("token", data.token);
-            window.location.href = "/user-index";
+            localStorage.setItem("token", data.refreshToken);
+            localStorage.setItem("email", email);
+            window.location.href = "/user-cara-melamar";
         });
       }
     },
