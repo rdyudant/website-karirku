@@ -4,6 +4,8 @@ node_modules/
 # Env files (kalau nanti kamu pakai)
 .env
 
+package.json
+
 # Log files
 npm-debug.log*
 yarn-debug.log*
