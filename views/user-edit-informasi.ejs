@@ -30,128 +30,23 @@
                 <div class="card-body">
                     <form id="formEditInformasi">
                         <h6 class="fw-bold text-uppercase mb-3 mt-4 border-bottom pb-2">Informasi Pribadi</h6>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" value="ridho@example.com" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="nama" class="form-label">Nama Lengkap</label>
-                            <input type="text" class="form-control" id="nama" name="nama" value="Ridho" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Jenis Kelamin</label>
-                            <select class="form-select" name="gender" id="gender">
-                                <option value="Laki-laki" selected>Laki-laki</option>
-                                <option value="Perempuan">Perempuan</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="hp" class="form-label">Nomor HP</label>
-                            <input type="number" class="form-control" id="hp" name="hp" value="081234567890">
-                        </div>
-                        <div class="mb-3">
-                            <label for="tempat_lahir" class="form-label">Tempat Lahir</label>
-                            <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir">
-                        </div>
-                        <div class="mb-3">
-                            <label for="tgl_lahir" class="form-label">Tanggal Lahir</label>
-                            <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir" value="2000-05-15">
-                        </div>
-                        <div class="mb-3">
-                            <label for="alamat" class="form-label">Alamat Lengkap</label>
-                            <textarea class="form-control" id="alamat" name="alamat" rows="3">Jl. Merdeka No. 123, Jakarta</textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="desa" class="form-label">Desa/Kelurahan</label>
-                            <input type="text" class="form-control" id="desa" name="desa">
-                        </div>
-                        <div class="mb-3">
-                            <label for="kecamatan" class="form-label">Kecamatan</label>
-                            <input type="text" class="form-control" id="kecamatan" name="kecamatan">
-                        </div>
-                        <div class="mb-3">
-                            <label for="kabupaten" class="form-label">Kabupaten</label>
-                            <input type="text" class="form-control" id="kabupaten" name="kabupaten">
-                        </div>
-                        <div class="mb-3">
-                            <label for="agama" class="form-label">Agama</label>
-                            <input type="text" class="form-control" id="agama" name="agama">
-                        </div>
-                        <div class="mb-3">
-                            <label for="pendidikan" class="form-label">Pendidikan Terakhir</label>
-                            <select class="form-select" id="pendidikan" name="pendidikan">
-                                <option value="S3">S3</option>
-                                <option value="S2">S2</option>
-                                <option value="S1/D4" selected>S1/D4</option>
-                                <option value="D3/D2/D1">D3/D2/D1</option>
-                                <option value="SMA/SMK">SMA/SMK</option>
-                                <option value="SMP">SMP</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="jurusan" class="form-label">Jurusan</label>
-                            <input type="text" class="form-control" id="jurusan" name="jurusan" value="Informatika">
-                        </div>
-                        <div class="mb-3">
-                            <label for="no_ktp" class="form-label">Nomor KTP</label>
-                            <input type="number" class="form-control" id="no_ktp" name="no_ktp">
-                        </div>
-                        <div class="mb-3">
-                            <label for="sertifikat" class="form-label">Sertifikat (opsional)</label>
-                            <input type="text" class="form-control" id="sertifikat" name="sertifikat">
-                        </div>
-                        <div class="mb-3">
-                            <label for="penempatan" class="form-label">Bersedia Ditempatkan di Purbalingga dan Sekitarnya?</label>
-                            <select class="form-select" id="penempatan" name="penempatan">
-                                <option value="Ya">Ya</option>
-                                <option value="Tidak">Tidak</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="sumber" class="form-label">Darimana Anda Memperoleh Informasi Lowongan Pekerjaan?</label>
-                            <select class="form-select" id="sumber" name="sumber">
-                                <option value="Medsos Official" selected>Media Sosial Official HEW</option>
-                                <option value="Medsos Lain">Media Sosial Lainnya</option>
-                                <option value="Orang Lain">Saudara, Tetangga, Teman, dll</option>
-                                <option value="Platform Loker">Glints, JobStreet, Lumina, dll</option>
-                                <option value="JobFair">JobFair</option>
-                                <option value="Media Cetak">Surat Kabar, Majalah, Brosur, dll</option>
-                                <option value="Lainnya">Lainnya</option>
-                            </select>
-                        </div>
+                        <div id="bio-edit"></div>
 
                         <h6 class="fw-bold text-uppercase mb-3 mt-5 border-bottom pb-2">
                             Pengalaman Kerja
                         </h6>
-                        <div class="mb-3">
-                            <label for="pengalaman" class="form-label">Pengalaman Kerja Sebelumnya</label>
-                            <select class="form-select" id="pengalaman" name="pengalaman">
-                                <option value=">5 Tahun (bidang yang sama)">>5 Tahun (bidang yang sama)</option>
-                                <option value="3-5 Tahun (bidang yang sama)">3-5 Tahun (bidang yang sama)</option>
-                                <option value="2-3 Tahun (bidang yang sama)">2-3 Tahun (bidang yang sama)</option>
-                                <option value="1-2 Tahun (bidang yang sama)">1-2 Tahun (bidang yang sama)</option>
-                                <option value="&lt;1 Tahun">&lt;1 Tahun</option>
-                                <option value="Fresh Graduated" selected>Fresh Graduated</option>
-                            </select>
-                        </div>
-                        <div id="pengalaman-wrapper" class="transition-wrapper">
-                            <div class="mb-3">
-                                <label for="pekerjaan_sebelumnya" class="form-label">Pekerjaan Sebelumnya</label>
-                                <input type="text" class="form-control" id="pekerjaan_sebelumnya" name="pekerjaan_sebelumnya">
-                            </div>
-                            <div class="mb-3">
-                                <label for="jabatan_sebelumnya" class="form-label">Jabatan / Posisi Sebelumnya</label>
-                                <input type="text" class="form-control" id="jabatan_sebelumnya" name="jabatan_sebelumnya">
-                            </div>
-                            <div class="mb-3">
-                                <label for="uraian_tugas" class="form-label">Uraian Tugas Pekerjaan Sebelumnya</label>
-                                <textarea class="form-control" id="uraian_tugas" name="uraian_tugas" rows="3"></textarea>
-                            </div>
+                        <div id="pengalaman-kerja"></div>
+
+                        <div class="d-grid">
+                            <button type="button" onclick="simpanInformasi()" class="btn btn-primary-custom">
+                                <i class="fas fa-save me-2"></i>Simpan
+                            </button>
                         </div>
 
                         <h6 class="fw-bold text-uppercase mb-3 mt-5 border-bottom pb-2">
                             Berkas Lamaran
                         </h6>
+                        
                         <div class="mb-3">
                             <label for="cv" class="form-label">CV / Curriculum Vitae (PDF)</label>
                             <input type="file" class="form-control" id="cv" name="cv" accept=".pdf">
@@ -177,11 +72,6 @@
                             <label for="dokumen_lain" class="form-label">Surat / Dokumen Pendukung Lain</label>
                             <input type="file" class="form-control" id="dokumen_lain" name="dokumen_lain">
                         </div>
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-primary-custom">
-                                <i class="fas fa-save me-2"></i>Simpan
-                            </button>
-                        </div>
                     </form>
                 </div>
             </div>
@@ -195,6 +85,224 @@
 </button>
   
 <script>
+    $(document).ready(function(){
+        const res = $.parseJSON(
+                $.ajax({
+                url: 'https://herbaemas.com/detail-bio',
+                method: 'get',
+                dataType: 'json',
+                async: false,
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('token')
+                }
+            }).responseText
+        )
+
+        const data = res.data
+        const data_user = res.data_user
+        const pengalamans = res.pengalaman
+
+        var bioedit = `
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" value="${ data_user.email??'-' }" required disabled>
+            </div>
+            <div class="mb-3">
+                <label for="nama" class="form-label">Nama Lengkap</label>
+                <input type="text" class="form-control" id="nama" name="nama" value="${ data_user.fullname??'-' }" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Jenis Kelamin</label>
+                <select class="form-select" name="gender" id="gender">
+                    <option value="1" ${ data.jenis_kelamin == 1 ? 'selected=""':'' }>Laki-laki</option>
+                    <option value="0" ${ data.jenis_kelamin == 0 ? 'selected=""':'' }>Perempuan</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="hp" class="form-label">Nomor HP</label>
+                <input type="number" class="form-control" id="hp" name="hp" value="${ data.no_hp??'-' }">
+            </div>
+            <div class="mb-3">
+                <label for="tempat_lahir" class="form-label">Tempat Lahir</label>
+                <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" value="${ data.tempat_lahir??'-' }">
+            </div>
+            <div class="mb-3">
+                <label for="tgl_lahir" class="form-label">Tanggal Lahir</label>
+                <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir" value="${ data.tanggal_lahir }">
+            </div>
+            <div class="mb-3">
+                <label for="alamat" class="form-label">Alamat Lengkap</label>
+                <textarea class="form-control" id="alamat" name="alamat" rows="3">${ data.alamat??'-' }</textarea>
+            </div>
+            <div class="mb-3">
+                <label for="desa" class="form-label">Desa/Kelurahan</label>
+                <input type="text" class="form-control" id="desa" name="desa" value="${ data.desa??'-' }">
+            </div>
+            <div class="mb-3">
+                <label for="kecamatan" class="form-label">Kecamatan</label>
+                <input type="text" class="form-control" id="kecamatan" name="kecamatan" value="${ data.kecamatan??'-' }">
+            </div>
+            <div class="mb-3">
+                <label for="kabupaten" class="form-label">Kabupaten</label>
+                <input type="text" class="form-control" id="kabupaten" name="kabupaten" value="${ data.kabupaten??'-' }">
+            </div>
+            <div class="mb-3">
+                <label for="pendidikan" class="form-label">Pendidikan Terakhir</label>
+                <select class="form-select" id="pendidikan" name="pendidikan">
+                    <option value="S3" ${ data.pendidikan_terakhir == 'S3'? 'selected=""':'' }>S3</option>
+                    <option value="S2" ${ data.pendidikan_terakhir == 'S2'? 'selected=""':'' }>S2</option>
+                    <option value="S1/D4" ${ data.pendidikan_terakhir == 'S1/D4'? 'selected=""':'' }>S1/D4</option>
+                    <option value="D3/D2/D1" ${ data.pendidikan_terakhir == 'D3/D2/D1'? 'selected=""':'' }>D3/D2/D1</option>
+                    <option value="SMA/SMK" ${ data.pendidikan_terakhir == 'SMA/SMK'? 'selected=""':'' }>SMA/SMK</option>
+                    <option value="SMP" ${ data.pendidikan_terakhir == 'SMP'? 'selected=""':'' }>SMP</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="jurusan" class="form-label">Jurusan</label>
+                <input type="text" class="form-control" id="jurusan" name="jurusan" value="${ data.jurusan??'-' }">
+            </div>
+            <div class="mb-3">
+                <label for="penempatan" class="form-label">Bersedia Ditempatkan di Purbalingga dan Sekitarnya?</label>
+                <select class="form-select" id="penempatan" name="penempatan">
+                    <option value="Ya" ${ data.ketersediaan == 1? 'selected=""':'' }>Ya</option>
+                    <option value="Tidak" ${ data.ketersediaan == 0? 'selected=""':'' }>Tidak</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="sumber" class="form-label">Darimana Anda Memperoleh Informasi Lowongan Pekerjaan?</label>
+                <select class="form-select" id="sumber" name="sumber">
+                    <option value="1" ${ data.sumber == 1? 'selected=""':'' }>Media Sosial Official HEW</option>
+                    <option value="2" ${ data.sumber == 2? 'selected=""':'' }>Media Sosial Lainnya</option>
+                    <option value="3" ${ data.sumber == 3? 'selected=""':'' }>Saudara, Tetangga, Teman, dll</option>
+                    <option value="4" ${ data.sumber == 4? 'selected=""':'' }>Glints, JobStreet, Lumina, dll</option>
+                    <option value="5" ${ data.sumber == 5? 'selected=""':'' }>JobFair</option>
+                    <option value="6" ${ data.sumber == 6? 'selected=""':'' }>Surat Kabar, Majalah, Brosur, dll</option>
+                    <option value="7" ${ data.sumber == 7? 'selected=""':'' }>Lainnya</option>
+                </select>
+            </div>
+        `
+
+        var pengalaman = `
+            <div class="mb-3">
+                <label for="pengalaman" class="form-label">Pengalaman Kerja Sebelumnya</label>
+                <select class="form-select" id="pengalaman" name="pengalaman">
+                    `
+                    if(pengalamans !== null){
+                        pengalaman += `
+                                            <option value="6" ${ pengalamans.lama == 6? 'selected=""':'' }>>5 Tahun (bidang yang sama)</option>
+                                            <option value="5" ${ pengalamans.lama == 5? 'selected=""':'' }>3-5 Tahun (bidang yang sama)</option>
+                                            <option value="4" ${ pengalamans.lama == 4? 'selected=""':'' }>2-3 Tahun (bidang yang sama)</option>
+                                            <option value="3" ${ pengalamans.lama == 3? 'selected=""':'' }>1-2 Tahun (bidang yang sama)</option>
+                                            <option value="2" ${ pengalamans.lama == 2? 'selected=""':'' }>&lt;1 Tahun</option>
+                                            <option value="1" ${ pengalamans.lama == 1? 'selected=""':'' }>Fresh Graduated</option>
+                                        </select>
+                                </div>
+                                <div id="pengalaman-wrapper" class="transition-wrapper">
+                                    <div class="mb-3">
+                                        <label for="pekerjaan_sebelumnya" class="form-label">Pekerjaan Sebelumnya</label>
+                                        <input type="text" class="form-control" value="${ pengalamans.pekerjaan_sebelumnya }" id="pekerjaan_sebelumnya" name="pekerjaan_sebelumnya">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="jabatan_sebelumnya" class="form-label">Jabatan / Posisi Sebelumnya</label>
+                                        <input type="text" class="form-control" value="${ pengalamans.jabatan }" id="jabatan_sebelumnya" name="jabatan_sebelumnya">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="uraian_tugas" class="form-label">Uraian Tugas Pekerjaan Sebelumnya</label>
+                                        <textarea class="form-control" id="uraian_tugas" name="uraian_tugas" rows="3">${ pengalamans.uraian }</textarea>
+                                    </div>
+                                </div>
+                            `
+                    }else{
+                        pengalaman += `
+                            <option value="6">>5 Tahun (bidang yang sama)</option>
+                            <option value="5">3-5 Tahun (bidang yang sama)</option>
+                            <option value="4">2-3 Tahun (bidang yang sama)</option>
+                            <option value="3">1-2 Tahun (bidang yang sama)</option>
+                            <option value="2">&lt;1 Tahun</option>
+                            <option value="1" selected>Fresh Graduated</option>
+                            </select>
+                        </div>
+                        <div id="pengalaman-wrapper" class="transition-wrapper">
+                            <div class="mb-3">
+                                <label for="pekerjaan_sebelumnya" class="form-label">Pekerjaan Sebelumnya</label>
+                                <input type="text" class="form-control" value="-" id="pekerjaan_sebelumnya" name="pekerjaan_sebelumnya">
+                            </div>
+                            <div class="mb-3">
+                                <label for="jabatan_sebelumnya" class="form-label">Jabatan / Posisi Sebelumnya</label>
+                                <input type="text" class="form-control" value="-" id="jabatan_sebelumnya" name="jabatan_sebelumnya">
+                            </div>
+                            <div class="mb-3">
+                                <label for="uraian_tugas" class="form-label">Uraian Tugas Pekerjaan Sebelumnya</label>
+                                <textarea class="form-control" id="uraian_tugas" name="uraian_tugas" rows="3">-</textarea>
+                            </div>
+                        </div>
+                    `
+                }
+        $('#pengalaman-kerja').html(pengalaman)
+        $('#bio-edit').html(bioedit)
+    })
+    function simpanInformasi(){
+        var nama = $('#nama').val();
+        var gender = $('#gender').val();
+        var hp = $('#hp').val();
+        var tempat_lahir = $('#tempat_lahir').val();
+        var tgl_lahir = $('#tgl_lahir').val();
+        var alamat = $('#alamat').val();
+        var desa = $('#desa').val();
+        var kecamatan = $('#kecamatan').val();
+        var kabupaten = $('#kabupaten').val();
+        var pendidikan = $('#pendidikan').val();
+        var jurusan = $('#jurusan').val();
+        var penempatan = $('#penempatan').val();
+        var sumber = $('#sumber').val();
+        var pengalaman = $('#pengalaman').val();
+        var pekerjaan_sebelumnya = $('#pekerjaan_sebelumnya').val();
+        var jabatan_sebelumnya = $('#jabatan_sebelumnya').val();
+        var uraian_tugas = $('#uraian_tugas').val();
+
+        const simpan = $.parseJSON(
+                $.ajax({
+                url: 'https://herbaemas.com/simpan-bio-karir',
+                method: 'post',
+                data: {
+                    nama: nama,
+                    gender: gender,
+                    hp: hp,
+                    tempat_lahir: tempat_lahir,
+                    tgl_lahir: tgl_lahir,
+                    alamat: alamat,
+                    desa: desa,
+                    kecamatan: kecamatan,
+                    kabupaten: kabupaten,
+                    pendidikan: pendidikan,
+                    jurusan: jurusan,
+                    penempatan: penempatan,
+                    sumber: sumber,
+                    pengalaman: pengalaman,
+                    pekerjaan_sebelumnya: pekerjaan_sebelumnya,
+                    jabatan_sebelumnya: jabatan_sebelumnya,
+                    uraian_tugas: uraian_tugas
+                },
+                dataType: 'json',
+                async: false,
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('token')
+                }
+            }).responseText
+        )
+        if (simpan.kode == 200) {
+            Swal.fire({
+                text: `${ simpan.msg }`,
+                icon: "success"
+            });
+        }else{
+            Swal.fire({
+                title: "Galat!",
+                text: `${ simpan.msg }`,
+                icon: "error"
+            });
+        }
+    }
     document.addEventListener('DOMContentLoaded', function () {
         // Pengalaman Wrapper
         const pengalamanSelect = document.getElementById('pengalaman');

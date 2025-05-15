@@ -223,77 +223,7 @@
                     <a href="#" class="btn btn-outline-custom">Lihat Semua</a>
                 </div> -->
             </div>
-            
-            <div class="row" data-aos="zoom-in" data-aos-delay="200">
-                <!-- Job Card 1 -->
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <a href="/detail-loker" class="text-decoration-none text-dark">
-                        <div class="job-card bg-white h-100 position-relative p-3 border rounded" data-bs-toggle="modal" data-bs-target="#jobDetailModal">
-                            <div class="d-flex justify-content-between mb-3">
-                                <img src="/assets/img/logo/HEW.png" alt="Company Logo" class="company-logo">
-                                <!-- <button class="btn btn-sm btn-outline-secondary rounded-circle">
-                                    <i class="far fa-bookmark"></i>
-                                </button> -->
-                            </div>
-                            <h5 class="job-title mb-1">Frontend Developer</h5>
-                            <p class="company-name text-muted mb-2">PT Herba Emas Wahidatama</p>
-                            <p class="location mb-3"><i class="fas fa-map-marker-alt me-1"></i> Purbalingga</p>
-                            <div class="mb-3">
-                                <span class="badge-custom">Full-time</span>
-                                <span class="badge-custom">1-3 tahun</span>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <p class="salary fw-bold mb-0">Rp 8 - 12 juta/bulan</p>
-                                <p class="posted text-muted small mb-0">3 hari yang lalu</p>
-                            </div>
-                            <!-- Tombol Detail -->
-                            <!-- <button type="button" class="btn btn-outline-custom btn-sm position-absolute top-0 end-0 m-2">
-                                <i class="fa fa-info-circle me-1"></i> Detail
-                            </button>   -->
-                        </div>
-                    </a>
-                </div>
-                
-                <!-- Job Card 2 -->
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="job-card bg-white h-100">
-                        <div class="d-flex justify-content-between mb-3">
-                            <img src="/assets/img/AOT.jpg" alt="Company Logo" class="company-logo">
-                        </div>
-                        <h5 class="job-title mb-1">Digital Marketing Specialist</h5>
-                        <p class="company-name text-muted mb-2">Brand Solutions Indonesia</p>
-                        <p class="location mb-3"><i class="fas fa-map-marker-alt me-1"></i> Bandung</p>
-                        <div class="mb-3">
-                            <span class="badge-custom">Full-time</span>
-                            <span class="badge-custom">2-5 tahun</span>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <p class="salary fw-bold mb-0">Rp 7 - 10 juta/bulan</p>
-                            <p class="posted text-muted small mb-0">1 hari yang lalu</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Job Card 3 -->
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="job-card bg-white h-100">
-                        <div class="d-flex justify-content-between mb-3">
-                            <img src="/assets/img/AOT.jpg" alt="Company Logo" class="company-logo">
-                        </div>
-                        <h5 class="job-title mb-1">Data Analyst</h5>
-                        <p class="company-name text-muted mb-2">DataTech Solutions</p>
-                        <p class="location mb-3"><i class="fas fa-map-marker-alt me-1"></i> Jakarta Pusat</p>
-                        <div class="mb-3">
-                            <span class="badge-custom">Full-time</span>
-                            <span class="badge-custom">2-4 tahun</span>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <p class="salary fw-bold mb-0">Rp 10 - 15 juta/bulan</p>
-                            <p class="posted text-muted small mb-0">Baru</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div id="listLoker"></div>
             
             <!-- <div class="d-md-none text-center mt-3 d-block">
                 <a href="#" class="btn btn-outline-custom">Lihat Semua</a>
@@ -360,6 +290,64 @@
 </button>
 
 <%- include('partials/footer') %>
+    <script>
+        var html = `<div class="row" data-aos="zoom-in" data-aos-delay="200">`
+        $(document).ready(function(){
+            const res = $.parseJSON(
+                $.ajax({
+                url: 'https://herbaemas.com/data-lowongan-limit',
+                method: 'get',
+                dataType: 'json',
+                async: false
+              }).responseText
+            )
+            const data = res.data
+            for (let i = 0; i < data.length; i++) {
+                const tanggalAwal = new Date(data[i].createdAt);
+                const hariIni = new Date(); // otomatis ambil tanggal hari ini
 
+                // Hitung selisih dalam milidetik
+                const selisihMs = hariIni - tanggalAwal;
+
+                // Ubah ke hari
+                const selisihHari = Math.floor(selisihMs / (1000 * 60 * 60 * 24));
+                html += `
+                    <!-- Job Card 1 -->
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <a href="#" onclick="detailLoker(${ data[i].id })" class="text-decoration-none text-dark">
+                            <div class="job-card bg-white h-100 position-relative p-3 border rounded" data-bs-toggle="modal" data-bs-target="#jobDetailModal">
+                                <div class="d-flex justify-content-between mb-3">
+                                    <img src="/assets/img/logo/HEW.png" alt="Company Logo" class="company-logo">
+                                    <!-- <button class="btn btn-sm btn-outline-secondary rounded-circle">
+                                        <i class="far fa-bookmark"></i>
+                                    </button> -->
+                                </div>
+                                <h5 class="job-title mb-1">${ data[i].position }</h5>
+                                <p class="company-name text-muted mb-2">PT Herba Emas Wahidatama</p>
+                                <p class="location mb-3"><i class="fas fa-map-marker-alt me-1"></i> Purbalingga</p>
+                                <div class="mb-3">
+                                    <span class="badge-custom">Full-time</span>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <p class="salary fw-bold mb-0">${ data[i].salary }</p>
+                                    <p class="posted text-muted small mb-0">${selisihHari} hari yang lalu</p>
+                                </div>
+                                <!-- Tombol Detail -->
+                                <!-- <button type="button" class="btn btn-outline-custom btn-sm position-absolute top-0 end-0 m-2">
+                                    <i class="fa fa-info-circle me-1"></i> Detail
+                                </button>   -->
+                            </div>
+                        </a>
+                    </div>
+                `            
+            }
+            html += '</div>'
+            $('#listLoker').html(html)
+        });
+        function detailLoker(id){
+            localStorage.setItem('idloker', id);
+            window.location= "/detail-loker";
+        }
+    </script>
 </body>
 </html>

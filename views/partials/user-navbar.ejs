@@ -37,7 +37,7 @@
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown">
-                        <i class="fas fa-user-circle fa-lg me-1"></i> <span class="d-none d-md-inline">Halo, <strong>Ridho</strong></span>
+                        <i class="fas fa-user-circle fa-lg me-1"></i> <span class="d-none d-md-inline">Halo, <span id="email"></span></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item" href="/user-akun"><i class="fas fa-cog me-2"></i>Kelola Akun</a></li>
@@ -49,3 +49,8 @@
         </div>
     </div>
 </nav>  
+<script>
+    $(document).ready(function(){
+        $('#email').html(`<strong>${ localStorage.getItem('email') }</strong>`)
+    });
+</script>
