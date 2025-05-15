@@ -41,7 +41,6 @@ function login() {
         }).then(() => {
             localStorage.setItem("token", data.refreshToken);
             localStorage.setItem("email", email);
-            localStorage.setItem("token", data.token);
             window.location.href = "/user-cara-melamar";
         });
       }

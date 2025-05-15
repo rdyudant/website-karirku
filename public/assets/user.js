@@ -17,7 +17,7 @@ $(document).ready(function(){
     const months = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
     const formatted = `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
 
-    var bio = `
+    var bioView = `
         <h6 class="fw-bold text-uppercase mb-3 mt-4 border-bottom pb-2">
             Informasi Pribadi
         </h6>
@@ -87,7 +87,7 @@ $(document).ready(function(){
             </p>
         </div>
     `
-    $('#bio').html(bio)
+    $('#bio-view').html(bioView)
 })
 
 // Cek token saat halaman dimuat
