@@ -26,7 +26,7 @@ app.get('/user-cara-melamar', (req, res) => {
   res.render('user-cara-melamar', { activePage: 'user-cara-melamar', title: 'Panduan Melamar | KarirKu' });
 });
 app.get('/user-index', (req, res) => {
-    res.render('user-index', { activePage: 'user-index', title: 'Selamat Datang | KarirKu' });
+    res.render('user-index', { activePage: 'user-index', title: 'Cari Lowongan | KarirKu' });
 });
 app.get('/user-detail-loker', (req, res) => {
     res.render('user-detail-loker', { activePage: 'user-detail-loker', title: 'Detail Lowongan | KarirKu' });
