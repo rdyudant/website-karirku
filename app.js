@@ -11,16 +11,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routing
 app.get('/', (req, res) => {
-    res.render('index', { title: 'KarirKu | Herba Emas Wahidatama' });
+    res.render('index', { title: 'Karir Herba Emas Wahidatama' });
 });
 app.get('/login', (req, res) => {
-    res.render('login', { title: 'KarirKu | Masuk' });
+    res.render('login', { title: 'Masuk | KarirKu' });
 });
 app.get('/signup', (req, res) => {
-    res.render('signup', { title: 'KarirKu | Daftar' });
+    res.render('signup', { title: 'Daftar | KarirKu' });
 });
 app.get('/detail-loker', (req, res) => {
-    res.render('detail-loker', { title: 'KarirKu | Detail Lowongan' });
+    res.render('detail-loker', { title: 'Detail Lowongan | KarirKu' });
+});
+app.get('/user-cara-melamar', (req, res) => {
+  res.render('user-cara-melamar', { activePage: 'user-cara-melamar', title: 'Panduan Melamar | KarirKu' });
 });
 app.get('/user-index', (req, res) => {
     res.render('user-index', { activePage: 'user-index', title: 'Selamat Datang | KarirKu' });
@@ -28,8 +31,8 @@ app.get('/user-index', (req, res) => {
 app.get('/user-detail-loker', (req, res) => {
     res.render('user-detail-loker', { activePage: 'user-detail-loker', title: 'Detail Lowongan | KarirKu' });
 });
-app.get('/user-cara-melamar', (req, res) => {
-  res.render('user-cara-melamar', { activePage: 'user-cara-melamar', title: 'Panduan Melamar | KarirKu' });
+app.get('/user-lamaran-cepat', (req, res) => {
+    res.render('user-lamaran-cepat', { activePage: 'user-lamaran-cepat', title: 'Lamaran Cepat | KarirKu' });
 });
 app.get('/user-informasi', (req, res) => {
     res.render('user-informasi', { activePage: 'user-informasi', title: 'Informasi Pelamar | KarirKu' });
