@@ -49,28 +49,24 @@
                         
                         <div class="mb-3">
                             <label for="cv" class="form-label">CV / Curriculum Vitae (PDF)</label>
-                            <input type="file" class="form-control" id="cv" name="cv" accept=".pdf">
-                            <!-- <label for="file-input" class="drop-container" id="drop-area">
-                                <span class="drop-title">Letakkan file disini</span>
-                                atau
-                                <input type="file" accept=".pdf" id="file-input" name="cv"> -->
-                            </label>
+                            <input type="file" class="form-control" id="cv" name="cv" accept=".pdf" onchange="uploadCV(event, 'cv')">
                         </div>
                         <div class="mb-3">
                             <label for="ktp" class="form-label">Kartu Tanda Penduduk</label>
-                            <input type="file" class="form-control" id="ktp" name="ktp">
+                            <input type="file" class="form-control" id="ktp" name="ktp" accept=".pdf">
                         </div>
                         <div class="mb-3">
                             <label for="ijazah" class="form-label">Ijazah Terakhir</label>
-                            <input type="file" class="form-control" id="ijazah" name="ijazah">
+                            <input type="file" class="form-control" id="ijazah" name="ijazah" accept=".pdf">
                         </div>
                         <div class="mb-3">
                             <label for="kk" class="form-label">Kartu Keluarga</label>
-                            <input type="file" class="form-control" id="kk" name="kk">
+                            <input type="file" class="form-control" id="kk" name="kk" accept=".pdf">
                         </div>
                         <div class="mb-3">
                             <label for="dokumen_lain" class="form-label">Surat / Dokumen Pendukung Lain</label>
                             <input type="file" class="form-control" id="dokumen_lain" name="dokumen_lain">
+                            <span><i><font style="color: red;">*</font>Jika lebih dari 1 file silahkan gabungkan jadi 1 file pdf untuk di upload</i></span>
                         </div>
                     </form>
                 </div>
@@ -85,6 +81,50 @@
 </button>
   
 <script>
+    function uploadCV(event, elementId){
+        const selectedImage = document.getElementById(elementId);
+        const fileInput = event.target;
+
+        if (fileInput.files && fileInput.files[0]) {
+            const reader = new FileReader();
+            const files = fileInput.files[0]
+            const fileSize = (files.size / 1024).toFixed(2);
+
+            if(fileSize > 1000){
+                return Swal.fire("Galat!","CV harus kurang dari 1 MB","error")
+            }else{
+                reader.onload = function(e) {
+                    selectedImage.src = e.target.result;
+                    base64String = reader.result
+        
+                    imageBase64Stringsep = base64String;
+        
+                    $.ajax({
+                        url: 'https://herbaemas.com/upload-berkas-lamaran',
+                            type: 'post',
+                            data: {
+                                email: localStorage.getItem('email'),
+                                file: base64String,
+                                jenis: 'cv'
+                            },
+                            dataType: 'json',
+                            headers: {
+                                'Authorization': 'Bearer '+ localStorage.getItem('token')
+                            },
+                            success: function(res){
+                                if (res.kode == 200) {
+                                    return Swal.fire("Sukses!","Berhasil Upload CV","success")
+                                }else{
+                                    return Swal.fire("Galat!","Gagal upload foto.","error")
+                                }
+                            }
+                    })
+                };
+        
+                reader.readAsDataURL(fileInput.files[0]);
+            }
+        }
+    }
     $(document).ready(function(){
         const res = $.parseJSON(
                 $.ajax({
