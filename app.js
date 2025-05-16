@@ -25,14 +25,14 @@ app.get('/detail-loker', (req, res) => {
 app.get('/user-cara-melamar', (req, res) => {
   res.render('user-cara-melamar', { activePage: 'user-cara-melamar', title: 'Panduan Melamar | KarirKu' });
 });
-app.get('/user-index', (req, res) => {
-    res.render('user-index', { activePage: 'user-index', title: 'Cari Lowongan | KarirKu' });
+app.get('/user-cari-loker', (req, res) => {
+    res.render('user-cari-loker', { activePage: 'user-cari-loker', title: 'Cari Lowongan | KarirKu' });
 });
 app.get('/user-detail-loker', (req, res) => {
-    res.render('user-detail-loker', { activePage: 'user-detail-loker', title: 'Detail Lowongan | KarirKu' });
+    res.render('user-detail-loker', { activePage: 'user-cari-loker', title: 'Detail Lowongan | KarirKu' });
 });
 app.get('/user-lamaran-cepat', (req, res) => {
-    res.render('user-lamaran-cepat', { activePage: 'user-lamaran-cepat', title: 'Lamaran Cepat | KarirKu' });
+    res.render('user-lamaran-cepat', { activePage: 'user-cari-loker', title: 'Lamaran Cepat | KarirKu' });
 });
 app.get('/user-informasi', (req, res) => {
     res.render('user-informasi', { activePage: 'user-informasi', title: 'Informasi Pelamar | KarirKu' });
