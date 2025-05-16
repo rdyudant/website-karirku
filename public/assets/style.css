@@ -112,7 +112,7 @@ html, body {
 }
 
 .hero-section {
-    background-color: #fff;
+    /* background-color: #fff; */
     padding: 40px 0 40px;
 }
 
@@ -339,11 +339,16 @@ html, body {
     100% { transform: rotate(360deg); }
 }
 
-@media (max-width: 768px) {
-    /* #backToTop {
-        display: flex !important;
-    } */
-}
+/* @media (max-width: 767.98px) {
+  #searchForm .input-group {
+    flex-direction: column;
+  }
+  #searchForm input,
+  #searchForm button {
+    width: 100%;
+    margin-top: 8px;
+  }
+} */
 
 @media (max-width: 576px) {
     .hero-section h1 {

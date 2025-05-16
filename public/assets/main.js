@@ -76,6 +76,11 @@ AOS.init({
     once: true     // Animasi hanya jalan sekali (tidak diulang saat scroll balik)
 });
 
+// Always on Top
+    $(document).ready(function () {
+        $(window).scrollTop(0);
+    });
+
 // Tombol Back to Top
 const backToTopBtn = document.getElementById('backToTop');
 window.addEventListener('scroll', function() {
@@ -91,14 +96,3 @@ backToTopBtn.addEventListener('click', function() {
         behavior: 'smooth'
     });
 });
-
-// Efek title berjalan
-// let titleText = document.title + " || ";
-// let scrollPos = 0;
-
-// function scrollTitle() {
-//     document.title = titleText.substring(scrollPos) + titleText.substring(0, scrollPos);
-//     scrollPos = (scrollPos + 1) % titleText.length;
-//     setTimeout(scrollTitle, 200); // kecepatan scroll
-// }
-// scrollTitle();

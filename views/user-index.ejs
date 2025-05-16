@@ -28,19 +28,20 @@
                                 <span class="input-group-text bg-white border-end-0">
                                     <i class="fas fa-search"></i>
                                 </span>
-                                <input type="text" class="form-control border-start-0" id="keyword" placeholder="Cari posisi atau kata kunci...">
+                                <input type="text" class="form-control border-start-0" id="keyword" placeholder="Cari Posisi">
                                 <button type="button" class="btn btn-outline-secondary d-none" id="clearKeyword">
                                     <i class="fas fa-times"></i>
                                 </button>
-                                <button type="submit" class="btn btn-primary-custom" id="btnSearch">Cari</button>
+                                <button type="submit" class="btn btn-primary-custom" id="btnSearch">
+                                    <span class="spinner-border spinner-border-sm me-2 d-none" role="status" id="searchSpinner"></span>
+                                    <span id="btnSearchText">Cari</span>
+                                </button>
                             </div>
                         </form>
-                        <!-- <div id="searchResults" class="mt-4"></div> -->
                     </div>
                 </div>
             </div>
         </div>
-        <script src="assets/search.js"></script>
     </section>
 
     <!-- Featured Jobs -->
@@ -48,83 +49,8 @@
         <div class="container">
             <div class="d-flex justify-content-between align-items-center mb-4" data-aos="fade-up" data-aos-delay="100">
                 <h2 class="section-title mb-0">Lowongan Terbaru</h2>
-                <!-- <div class="d-none d-md-block">
-                    <a href="#" class="btn btn-outline-custom">Lihat Semua</a>
-                </div> -->
             </div>
-            
-            <div class="row" data-aos="zoom-in" data-aos-delay="200">
-                <!-- Job Card 1 -->
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <a href="/user-detail-loker" class="text-decoration-none text-dark">
-                        <div class="job-card bg-white h-100 position-relative p-3 border rounded">
-                            <div class="d-flex justify-content-between mb-3">
-                                <img src="/assets/img/logo/HEW.png" class="company-logo">
-                            </div>
-                            <h5 class="job-title mb-1">Frontend Developer</h5>
-                            <p class="company-name text-muted mb-2">PT Herba Emas Wahidatama
-                            <p class="location mb-3"><i class="fas fa-map-marker-alt me-1"></i> Purbalingga</p>
-                            <div class="mb-3">
-                                <span class="badge-custom">Full-time</span>
-                                <span class="badge-custom">1-3 tahun</span>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <p class="salary fw-bold mb-0">Rp 8 - 12 juta/bulan</p>
-                                <p class="posted text-muted small mb-0">3 hari yang lalu</p>
-                            </div>
-                            <!-- Tombol Detail -->
-                            <!-- <button type="button" class="btn btn-outline-custom btn-sm position-absolute top-0 end-0 m-2">
-                                <i class="fa fa-info-circle me-1"></i> Detail
-                            </button>   -->
-                        </div>
-                    </a>
-                </div>
-                
-                <!-- Job Card 2 -->
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="job-card bg-white h-100">
-                        <div class="d-flex justify-content-between mb-3">
-                            <img src="/assets/img/AOT.jpg" alt="Company Logo" class="company-logo">
-                        </div>
-                        <h5 class="job-title mb-1">Digital Marketing Specialist</h5>
-                        <p class="company-name text-muted mb-2">Brand Solutions Indonesia</p>
-                        <p class="location mb-3"><i class="fas fa-map-marker-alt me-1"></i> Bandung</p>
-                        <div class="mb-3">
-                            <span class="badge-custom">Full-time</span>
-                            <span class="badge-custom">2-5 tahun</span>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <p class="salary fw-bold mb-0">Rp 7 - 10 juta/bulan</p>
-                            <p class="posted text-muted small mb-0">1 hari yang lalu</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Job Card 3 -->
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="job-card bg-white h-100">
-                        <div class="d-flex justify-content-between mb-3">
-                            <img src="/assets/img/AOT.jpg" alt="Company Logo" class="company-logo">
-                        </div>
-                        <h5 class="job-title mb-1">Data Analyst</h5>
-                        <p class="company-name text-muted mb-2">DataTech Solutions</p>
-                        <p class="location mb-3"><i class="fas fa-map-marker-alt me-1"></i> Jakarta Pusat</p>
-                        <div class="mb-3">
-                            <span class="badge-custom">Full-time</span>
-                            <span class="badge-custom">2-4 tahun</span>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <p class="salary fw-bold mb-0">Rp 10 - 15 juta/bulan</p>
-                            <p class="posted text-muted small mb-0">Baru</p>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-            
-            <!-- <div class="d-md-none text-center mt-3 d-block">
-                <a href="#" class="btn btn-outline-custom">Lihat Semua</a>
-            </div> -->
+            <div id="listLoker"></div>
         </div>
     </section>
 
@@ -138,6 +64,115 @@
 <script src="assets/user.js"></script>
 
 <%- include('partials/footer') %>
+
+<script>
+    var html = "";
+
+    $(document).ready(function () {
+        const keywordInput = $('#keyword');
+        const clearBtn = $('#clearKeyword');
+
+        const fetchAndRender = (keyword = "") => {
+            $.ajax({
+                url: 'https://herbaemas.com/data-lowongan-limit',
+                method: 'GET',
+                dataType: 'json',
+                success: function (res) {
+                    const data = res.data;
+                    let filtered = data;
+
+                    if (keyword) {
+                        const lowerKeyword = keyword.toLowerCase();
+                        filtered = data.filter(item =>
+                            item.position.toLowerCase().includes(lowerKeyword)
+                        );
+                    }
+
+                    if (filtered.length === 0) {
+                        $('#listLoker').html(`<p class="text-muted">Tidak ada hasil untuk posisi "<strong>${keyword}</strong>".</p>`);
+                        return;
+                    }
+
+                    html = `<div class="row" data-aos="zoom-in" data-aos-delay="200">`;
+
+                    for (let i = 0; i < filtered.length; i++) {
+                        const tanggalAwal = new Date(filtered[i].createdAt);
+                        const hariIni = new Date();
+                        const selisihMs = hariIni - tanggalAwal;
+                        const selisihHari = Math.floor(selisihMs / (1000 * 60 * 60 * 24));
+
+                        html += `
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="javascript:void(0)" onclick="detailLoker(${filtered[i].id})" class="text-decoration-none text-dark">
+                                    <div class="job-card bg-white h-100 position-relative p-3 border rounded">
+                                        <div class="d-flex justify-content-between mb-3">
+                                            <img src="/assets/img/logo/HEW.png" alt="Company Logo" class="company-logo">
+                                        </div>
+                                        <h5 class="job-title mb-1">${filtered[i].position}</h5>
+                                        <p class="company-name text-muted mb-2">PT Herba Emas Wahidatama</p>
+                                        <p class="location mb-3"><i class="fas fa-map-marker-alt me-1"></i> Purbalingga</p>
+                                        <div class="mb-3">
+                                            <span class="badge-custom">Full-time</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <p class="salary fw-bold mb-0">${filtered[i].salary}</p>
+                                            <p class="posted text-muted small mb-0">${selisihHari} hari yang lalu</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        `;
+                    }
+
+                    html += '</div>';
+                    $('#listLoker').html(html);
+                    AOS.refresh();
+                    $('#searchSpinner').addClass('d-none');
+                    $('#btnSearchText').text('Cari');
+                },
+                error: function () {
+                    $('#listLoker').html("<p class='text-danger'>Gagal memuat data lowongan.</p>");
+                    $('#searchSpinner').addClass('d-none');
+                    $('#btnSearchText').text('Cari');
+                }
+            });
+        };
+
+        // Awal saat halaman dimuat
+        fetchAndRender();
+
+        // Tampilkan tombol silang saat input terisi
+        keywordInput.on('input', function () {
+            clearBtn.toggleClass('d-none', $(this).val().trim().length === 0);
+        });
+
+        // Tombol submit pencarian
+        $('#searchForm').on('submit', function (e) {
+            e.preventDefault();
+            const keyword = keywordInput.val().trim();
+
+            // Tampilkan spinner
+            $('#searchSpinner').removeClass('d-none');
+            $('#btnSearchText').text('');
+
+            // Lakukan pencarian
+            fetchAndRender(keyword);
+        });
+
+
+        // Tombol clear (ikon silang)
+        clearBtn.on('click', function () {
+            keywordInput.val('');
+            clearBtn.addClass('d-none');
+            fetchAndRender(); // tampilkan semua lowongan kembali
+        });
+    });
+
+    function detailLoker(id) {
+        localStorage.setItem('idloker', id);
+        window.location = "/detail-loker";
+    }
+</script>
 
 </body>
 </html>

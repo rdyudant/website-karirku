@@ -46,18 +46,6 @@ app.get('/user-edit-informasi', (req, res) => {
 app.get('/user-akun', (req, res) => {
     res.render('user-akun', { activePage: 'user-akun', title: 'Kelola Akun | KarirKu' });
 });
-app.get('/api/search', (req, res) => {
-    const q = req.query.q.toLowerCase();
-    const jobs = [
-      { title: 'Frontend Developer', company: 'PT Teknologi Maju', location: 'Jakarta' },
-      { title: 'UI/UX Designer', company: 'CV Kreatif Digital', location: 'Bandung' },
-      { title: 'Backend Developer', company: 'Startup Inovatif', location: 'Surabaya' }
-    ];
-    const results = jobs.filter(job =>
-      job.title.toLowerCase().includes(q) || job.company.toLowerCase().includes(q)
-    );
-    res.json(results);
-});
 
 // Start server
 const PORT = process.env.PORT || 5000;

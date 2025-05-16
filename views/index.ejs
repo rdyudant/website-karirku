@@ -17,14 +17,14 @@
 
 <section class="background-section">
     <!-- Hero Section with Search -->
-    <section class="bg-light hero-section">
+    <section class="hero-section">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <h1 class="display-4 fw-bold mb-4c" data-aos="fade-up" data-aos-delay="100">Temukan Karir <span style="color: var(--primary-color);">Impianmu</span></h1>
                     <p class="lead mb-4" data-aos="fade-up" data-aos-delay="200">Akses banyak lowongan pekerjaan pilihan bersama 
                         <span style="color: var(--primary-color); font-weight: bold;">PT Herba Emas Wahidatama.</span> Langkah awal menuju karir terbaikmu dimulai.</p>
-                    <div class="search-box mb-5" data-aos="fade-up" data-aos-delay="200">
+                    <!-- <div class="search-box mb-5" data-aos="fade-up" data-aos-delay="200">
                         <form id="searchForm">
                             <div class="row g-2">
                                 <div class="col-md-10">
@@ -43,7 +43,7 @@
                                 </div>
                             </div>
                         </form>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
                     <img src="/assets/img/job-search.jpg" alt="Job Search Illustration" class="img-fluid">
@@ -217,11 +217,27 @@
     <!-- Featured Jobs -->
     <section class="py-5 bg-light">
         <div class="container">
-            <div class="d-flex justify-content-between align-items-center mb-4" data-aos="fade-up" data-aos-delay="100">
-                <h2 class="section-title mb-0">Lowongan Terbaru</h2>
-                <!-- <div class="d-none d-md-block">
-                    <a href="#" class="btn btn-outline-custom">Lihat Semua</a>
-                </div> -->
+            <div class="row align-items-center mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-md-6">
+                    <h2 class="section-title mb-0 mb-md-0 mb-2">Lowongan Terbaru</h2>
+                </div>
+                <div class="col-md-6 mt-3 mt-md-0">
+                    <form id="searchForm">
+                        <div class="input-group">
+                            <span class="input-group-text bg-white border-end-0">
+                                <i class="fas fa-search"></i>
+                            </span>
+                            <input type="text" class="form-control border-start-0" id="keyword" placeholder="Cari Posisi">
+                            <button type="button" class="btn btn-outline-secondary d-none" id="clearKeyword">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            <button type="submit" class="btn btn-primary-custom" id="btnSearch">
+                                <span class="spinner-border spinner-border-sm me-2 d-none" role="status" id="searchSpinner"></span>
+                                <span id="btnSearchText">Cari</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
             <div id="listLoker"></div>
             
@@ -290,64 +306,167 @@
 </button>
 
 <%- include('partials/footer') %>
-    <script>
-        var html = `<div class="row" data-aos="zoom-in" data-aos-delay="200">`
-        $(document).ready(function(){
-            const res = $.parseJSON(
-                $.ajax({
-                url: 'https://herbaemas.com/data-lowongan-limit',
-                method: 'get',
-                dataType: 'json',
-                async: false
-              }).responseText
-            )
-            const data = res.data
-            for (let i = 0; i < data.length; i++) {
-                const tanggalAwal = new Date(data[i].createdAt);
-                const hariIni = new Date(); // otomatis ambil tanggal hari ini
 
-                // Hitung selisih dalam milidetik
-                const selisihMs = hariIni - tanggalAwal;
+<!-- <script>
+    var html = `<div class="row" data-aos="zoom-in" data-aos-delay="200">`
+    $(document).ready(function(){
+        const res = $.parseJSON(
+            $.ajax({
+            url: 'https://herbaemas.com/data-lowongan-limit',
+            method: 'get',
+            dataType: 'json',
+            async: false
+            }).responseText
+        )
+        const data = res.data
+        for (let i = 0; i < data.length; i++) {
+            const tanggalAwal = new Date(data[i].createdAt);
+            const hariIni = new Date(); // otomatis ambil tanggal hari ini
 
-                // Ubah ke hari
-                const selisihHari = Math.floor(selisihMs / (1000 * 60 * 60 * 24));
-                html += `
-                    <!-- Job Card 1 -->
-                    <div class="col-md-6 col-lg-4 mb-4">
-                        <a href="#" onclick="detailLoker(${ data[i].id })" class="text-decoration-none text-dark">
-                            <div class="job-card bg-white h-100 position-relative p-3 border rounded" data-bs-toggle="modal" data-bs-target="#jobDetailModal">
-                                <div class="d-flex justify-content-between mb-3">
-                                    <img src="/assets/img/logo/HEW.png" alt="Company Logo" class="company-logo">
-                                    <!-- <button class="btn btn-sm btn-outline-secondary rounded-circle">
-                                        <i class="far fa-bookmark"></i>
-                                    </button> -->
-                                </div>
-                                <h5 class="job-title mb-1">${ data[i].position }</h5>
-                                <p class="company-name text-muted mb-2">PT Herba Emas Wahidatama</p>
-                                <p class="location mb-3"><i class="fas fa-map-marker-alt me-1"></i> Purbalingga</p>
-                                <div class="mb-3">
-                                    <span class="badge-custom">Full-time</span>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <p class="salary fw-bold mb-0">${ data[i].salary }</p>
-                                    <p class="posted text-muted small mb-0">${selisihHari} hari yang lalu</p>
-                                </div>
-                                <!-- Tombol Detail -->
-                                <!-- <button type="button" class="btn btn-outline-custom btn-sm position-absolute top-0 end-0 m-2">
-                                    <i class="fa fa-info-circle me-1"></i> Detail
-                                </button>   -->
-                            </div>
-                        </a>
+            // Hitung selisih dalam milidetik
+            const selisihMs = hariIni - tanggalAwal;
+
+            // Ubah ke hari
+            const selisihHari = Math.floor(selisihMs / (1000 * 60 * 60 * 24));
+            html += `
+            <div class="col-md-6 col-lg-4 mb-4">
+                <a href="javascript:void(0)" onclick="detailLoker(${ data[i].id })" class="text-decoration-none text-dark">
+                    <div class="job-card bg-white h-100 position-relative p-3 border rounded" data-bs-toggle="modal" data-bs-target="#jobDetailModal">
+                        <div class="d-flex justify-content-between mb-3">
+                            <img src="/assets/img/logo/HEW.png" alt="Company Logo" class="company-logo">
+                        </div>
+                        <h5 class="job-title mb-1">${ data[i].position }</h5>
+                        <p class="company-name text-muted mb-2">PT Herba Emas Wahidatama</p>
+                        <p class="location mb-3"><i class="fas fa-map-marker-alt me-1"></i> Purbalingga</p>
+                        <div class="mb-3">
+                            <span class="badge-custom">Full-time</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <p class="salary fw-bold mb-0">${ data[i].salary }</p>
+                            <p class="posted text-muted small mb-0">${selisihHari} hari yang lalu</p>
+                        </div>
                     </div>
-                `            
-            }
-            html += '</div>'
-            $('#listLoker').html(html)
-        });
-        function detailLoker(id){
-            localStorage.setItem('idloker', id);
-            window.location= "/detail-loker";
+                </a>
+            </div>
+            `            
         }
-    </script>
+        html += '</div>'
+        $('#listLoker').html(html)
+    });
+    function detailLoker(id){
+        localStorage.setItem('idloker', id);
+        window.location= "/detail-loker";
+    }
+</script> -->
+
+<script>
+    var html = "";
+
+    $(document).ready(function () {
+        const keywordInput = $('#keyword');
+        const clearBtn = $('#clearKeyword');
+
+        const fetchAndRender = (keyword = "") => {
+            $.ajax({
+                url: 'https://herbaemas.com/data-lowongan-limit',
+                method: 'GET',
+                dataType: 'json',
+                success: function (res) {
+                    const data = res.data;
+                    let filtered = data;
+
+                    if (keyword) {
+                        const lowerKeyword = keyword.toLowerCase();
+                        filtered = data.filter(item =>
+                            item.position.toLowerCase().includes(lowerKeyword)
+                        );
+                    }
+
+                    if (filtered.length === 0) {
+                        $('#listLoker').html(`<p class="text-muted">Tidak ada hasil untuk posisi "<strong>${keyword}</strong>".</p>`);
+                        return;
+                    }
+
+                    html = `<div class="row" data-aos="zoom-in" data-aos-delay="200">`;
+
+                    for (let i = 0; i < filtered.length; i++) {
+                        const tanggalAwal = new Date(filtered[i].createdAt);
+                        const hariIni = new Date();
+                        const selisihMs = hariIni - tanggalAwal;
+                        const selisihHari = Math.floor(selisihMs / (1000 * 60 * 60 * 24));
+
+                        html += `
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <a href="javascript:void(0)" onclick="detailLoker(${filtered[i].id})" class="text-decoration-none text-dark">
+                                    <div class="job-card bg-white h-100 position-relative p-3 border rounded">
+                                        <div class="d-flex justify-content-between mb-3">
+                                            <img src="/assets/img/logo/HEW.png" alt="Company Logo" class="company-logo">
+                                        </div>
+                                        <h5 class="job-title mb-1">${filtered[i].position}</h5>
+                                        <p class="company-name text-muted mb-2">PT Herba Emas Wahidatama</p>
+                                        <p class="location mb-3"><i class="fas fa-map-marker-alt me-1"></i> Purbalingga</p>
+                                        <div class="mb-3">
+                                            <span class="badge-custom">Full-time</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <p class="salary fw-bold mb-0">${filtered[i].salary}</p>
+                                            <p class="posted text-muted small mb-0">${selisihHari} hari yang lalu</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        `;
+                    }
+
+                    html += '</div>';
+                    $('#listLoker').html(html);
+                    AOS.refresh();
+                    $('#searchSpinner').addClass('d-none');
+                    $('#btnSearchText').text('Cari');
+                },
+                error: function () {
+                    $('#listLoker').html("<p class='text-danger'>Gagal memuat data lowongan.</p>");
+                    $('#searchSpinner').addClass('d-none');
+                    $('#btnSearchText').text('Cari');
+                }
+            });
+        };
+
+        // Awal saat halaman dimuat
+        fetchAndRender();
+
+        // Tampilkan tombol silang saat input terisi
+        keywordInput.on('input', function () {
+            clearBtn.toggleClass('d-none', $(this).val().trim().length === 0);
+        });
+
+        // Tombol submit pencarian
+        $('#searchForm').on('submit', function (e) {
+            e.preventDefault();
+            const keyword = keywordInput.val().trim();
+
+            // Tampilkan spinner
+            $('#searchSpinner').removeClass('d-none');
+            $('#btnSearchText').text('');
+
+            // Lakukan pencarian
+            fetchAndRender(keyword);
+        });
+
+
+        // Tombol clear (ikon silang)
+        clearBtn.on('click', function () {
+            keywordInput.val('');
+            clearBtn.addClass('d-none');
+            fetchAndRender(); // tampilkan semua lowongan kembali
+        });
+    });
+
+    function detailLoker(id) {
+        localStorage.setItem('idloker', id);
+        window.location = "/detail-loker";
+    }
+</script>
+
 </body>
 </html>
