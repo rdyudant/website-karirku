@@ -43,6 +43,10 @@ $(document).ready(function(){
     const formatted = `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
 
     var bioView = `
+        <center>
+        <img src="${ data.foto == null? 'https://i.pinimg.com/736x/8b/16/7a/8b167af653c2399dd93b952a48740620.jpg':`https://herbaemas.com/foto/${ data.foto }` }" alt="" style="width: 150px;">
+        </center>
+        <div class="p-1"></div>
         <h6 class="fw-bold text-uppercase mb-3 mt-4 border-bottom pb-2">
             Informasi Pribadi
         </h6>

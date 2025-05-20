@@ -28,6 +28,14 @@
                     </a>
                 </div>
                 <div class="card-body">
+                    <center>
+                        <div id="fotoPelamar"></div>
+                        <div class="p-1"></div>
+                        <input type="file" id="fileFoto" onchange="uploadFoto(event, 'fileFoto')" hidden>
+                        <button type="button" class="btn btn-success btn-sm" onclick="document.getElementById('fileFoto').click()">
+                            Upload Foto
+                        </button>
+                    </center>
                     <form id="formEditInformasi">
                         <h6 class="fw-bold text-uppercase mb-3 mt-4 border-bottom pb-2">Informasi Pribadi</h6>
                         <div id="bio-edit"></div>
@@ -81,6 +89,49 @@
 </button>
   
 <script>
+    function uploadFoto(event, elementId){
+        const selectedImage = document.getElementById(elementId);
+        const fileInput = event.target;
+        if (fileInput.files && fileInput.files[0]) {
+            const reader = new FileReader();
+            const files = fileInput.files[0]
+            const fileSize = (files.size / 1024).toFixed(2);
+
+            if(fileSize > 1000){
+                return Swal.fire("Galat!","Foto harus kurang dari 1 MB","error")
+            }else{
+                reader.onload = function(e) {
+                    selectedImage.src = e.target.result;
+                    base64String = reader.result
+        
+                    imageBase64Stringsep = base64String;
+                    console.log(imageBase64Stringsep);
+                    $.ajax({
+                        url: 'https://herbaemas.com/upload-foto-pelamar',
+                            type: 'post',
+                            data: {
+                                fileFoto: imageBase64Stringsep
+                            },
+                            dataType: 'json',
+                            headers: {
+                                'Authorization': 'Bearer '+ localStorage.getItem('token')
+                            },
+                            success: function(res){
+                                if (res.kode == 200) {
+                                    Swal.fire("Sukses!","Berhasil Upload CV","success")
+                                    location.reload();
+                                }else{
+                                    Swal.fire("Galat!","Gagal upload foto.","error")
+                                    location.reload();
+                                }
+                            }
+                    })
+                };
+        
+                reader.readAsDataURL(fileInput.files[0]);
+            }
+        }
+    }
     function uploadBerkas(event, elementId){
         const selectedImage = document.getElementById(elementId);
         const fileInput = event.target;
@@ -91,7 +142,7 @@
             const fileSize = (files.size / 1024).toFixed(2);
 
             if(fileSize > 1000){
-                return Swal.fire("Galat!","CV harus kurang dari 1 MB","error")
+                return Swal.fire("Galat!","Berkas harus kurang dari 1 MB","error")
             }else{
                 reader.onload = function(e) {
                     selectedImage.src = e.target.result;
@@ -278,6 +329,11 @@
                         </div>
                     `
                 }
+        var fotoPelamar = `
+            <img src="${ data.foto == null? 'https://i.pinimg.com/736x/8b/16/7a/8b167af653c2399dd93b952a48740620.jpg':`https://herbaemas.com/foto/${ data.foto }` }" alt="" style="width: 150px;">
+        `
+
+        $('#fotoPelamar').html(fotoPelamar)
         $('#pengalaman-kerja').html(pengalaman)
         $('#bio-edit').html(bioedit)
     })
