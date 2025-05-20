@@ -176,30 +176,6 @@ $(document).ready(function(){
         </div>
     `
     $('#bio-view').html(bioView)   
-            
-    var bioLamar = `
-        <div class="mb-3">
-            <label for="namaLengkap" class="form-label">Nama Lengkap</label>
-            <input type="text" class="form-control" id="namaLengkap" value="${ data_user.fullname??'-' }" disabled>
-        </div>
-        <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" value="${ data_user.email??'-' }" disabled>
-        </div>
-        <div class="mb-3">
-            <label for="telepon" class="form-label">Nomor Telepon</label>
-            <input type="text" class="form-control" id="telepon" value="${ data.no_hp??'-' }" disabled>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">CV / Curriculum Vitae</label>
-            <div>
-                <a href="${ cv }" target="_blank" class="btn btn-sm btn-outline-custom">
-                    <i class="fas fa-file-pdf me-1"></i> Lihat CV
-                </a>
-            </div>
-        </div>
-    `
-    $('#bio-lamar').html(bioLamar)
 })
 
 // Cek token saat halaman dimuat

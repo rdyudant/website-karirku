@@ -103,7 +103,51 @@
             <h5 class="mb-1 fw-semibold">${ posisi }</h5>
             <p class="text-muted mb-1">PT Herba Emas Wahidatama</p>
         `;
+        const ress = $.parseJSON(
+            $.ajax({
+                url: 'https://herbaemas.com/detail-bio',
+                method: 'get',
+                dataType: 'json',
+                async: false,
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('token')
+                }
+            }).responseText
+        )
+        const datas = ress.data
+        const data_users = ress.data_user
+        const berkass = ress.berkas
+        var cvs = '#'
+        for (let bs = 0; bs < berkass.length; bs++) {
+            if(berkass[bs].jenis == 'cv'){
+                cvs = `https://herbaemas.com/cv/${ berkass[bs].fileberkas }`
+            }
+        }
+        var bioLamar = `
+            <div class="mb-3">
+                <label for="namaLengkap" class="form-label">Nama Lengkap</label>
+                <input type="text" class="form-control" id="namaLengkap" value="${ data_users.fullname??'-' }" disabled>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" value="${ data_users.email??'-' }" disabled>
+            </div>
+            <div class="mb-3">
+                <label for="telepon" class="form-label">Nomor Telepon</label>
+                <input type="text" class="form-control" id="telepon" value="${ datas.no_hp??'-' }" disabled>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">CV / Curriculum Vitae</label>
+                <div>
+                    <a href="${ cvs }" target="_blank" class="btn btn-sm btn-outline-custom">
+                        <i class="fas fa-file-pdf me-1"></i> Lihat CV
+                    </a>
+                </div>
+            </div>
+        `
+        $('#bio-lamar').html(bioLamar)
         $('#detailJob').html(detailJob)
+
     })
      
 function ajukanLamaran(){
