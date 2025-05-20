@@ -19,52 +19,7 @@
     <h2 class="mb-4" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-history me-2"></i>Riwayat Lamaran</h2>
 
     <!-- Lamaran Card -->
-    <div class="row gy-4" data-aos="fade-up" data-aos-delay="300">
-    <!-- Contoh 1 -->
-        <div class="col-12">
-            <div class="card shadow-sm border-0">
-                <div class="card-body d-flex justify-content-between align-items-start flex-wrap">
-                    <div>
-                        <h5 class="card-title mb-1">Frontend Developer</h5>
-                        <p class="mb-1 text-muted"><i class="fas fa-building me-1"></i> PT Teknologi Maju</p>
-                        <p class="mb-1"><i class="fas fa-map-marker-alt me-1"></i> Jakarta, Indonesia</p>
-                        <p class="mb-1"><i class="fas fa-calendar-alt me-1"></i> Dilamar pada: 12 Mei 2025</p>
-                    </div>
-                <span class="badge bg-warning text-dark align-self-start">Menunggu</span>
-                </div>
-            </div>
-        </div>
-
-    <!-- Contoh 2 -->
-        <div class="col-12">
-            <div class="card shadow-sm border-0">
-                <div class="card-body d-flex justify-content-between align-items-start flex-wrap">
-                    <div>
-                        <h5 class="card-title mb-1">UI/UX Designer</h5>
-                        <p class="mb-1 text-muted"><i class="fas fa-building me-1"></i> CV Kreatif Digital</p>
-                        <p class="mb-1"><i class="fas fa-map-marker-alt me-1"></i> Bandung, Indonesia</p>
-                        <p class="mb-1"><i class="fas fa-calendar-alt me-1"></i> Dilamar pada: 9 Mei 2025</p>
-                    </div>
-                <span class="badge bg-success align-self-start">Diterima</span>
-                </div>
-            </div>
-        </div>
-
-    <!-- Contoh 3 -->
-        <div class="col-12">
-            <div class="card shadow-sm border-0">
-                <div class="card-body d-flex justify-content-between align-items-start flex-wrap">
-                    <div>
-                        <h5 class="card-title mb-1">Backend Engineer</h5>
-                        <p class="mb-1 text-muted"><i class="fas fa-building me-1"></i> Startup Inovatif</p>
-                        <p class="mb-1"><i class="fas fa-map-marker-alt me-1"></i> Surabaya, Indonesia</p>
-                        <p class="mb-1"><i class="fas fa-calendar-alt me-1"></i> Dilamar pada: 7 Mei 2025</p>
-                    </div>
-                <span class="badge bg-danger align-self-start">Ditolak</span>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div id="listLamaran"></div>
 </div>
   
 <!-- Tombol Back to Top -->
@@ -73,6 +28,79 @@
 </button>
   
 <script>
+    $(document).ready(function(){
+        const req = $.parseJSON(
+            $.ajax({
+                url: 'https://herbaemas.com/riwayat-lamaran', 
+                method: 'get',
+                dataType: 'json',
+                async: false,
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('token')
+                }
+            }).responseText
+        )
+        if (req.kode == 200) {
+            const listData = req.data
+            var listLamaran = `
+                <div class="row gy-4" data-aos="fade-up" data-aos-delay="300">
+            `
+            for (let d = 0; d < listData.length; d++) {
+                var stat = ``
+                if(listData[d].status_lamaran == 0){
+                    stat += `<span class="badge bg-primary align-self-start">Lamaran Terkirim</span>`
+                }
+                if(listData[d].status_lamaran == 1){
+                    stat += `<span class="badge bg-info align-self-start">Lamaran Diterima HX</span>`
+                }
+                if(listData[d].status_lamaran == 2){
+                    stat += `<span class="badge bg-warning align-self-start">Proses Interview Pertama</span>`
+                }
+                if(listData[d].status_lamaran == 3){
+                    stat += `<span class="badge bg-warning align-self-start">Proses Interview Kedua</span>`
+                }
+                if(listData[d].status_lamaran == 4){
+                    stat += `<span class="badge bg-warning align-self-start">Proses Interview Ketiga</span>`
+                }
+                if(listData[d].status_lamaran == 5){
+                    stat += `<span class="badge bg-success align-self-start">Lolos</span>`
+                }
+                if(listData[d].status_lamaran == 6){
+                    stat += `<span class="badge bg-danger align-self-start">Tidak Lolos</span>`
+                }
+                if(listData[d].status_lamaran == 7){
+                    stat += `<span class="badge bg-secondary align-self-start">Lamaran Tidak Sesuai</span>`
+                }
+
+                const date = new Date(listData[d].tgl_melamar);
+
+                const formatted = new Intl.DateTimeFormat('id-ID', {
+                day: '2-digit',
+                month: 'long',
+                year: 'numeric'
+                }).format(date);
+                listLamaran += `
+                        <div class="col-12">
+                            <div class="card shadow-sm border-0">
+                                <div class="card-body d-flex justify-content-between align-items-start flex-wrap">
+                                    <div>
+                                        <h5 class="card-title mb-1">${ listData[d].position }</h5>
+                                        <p class="mb-1 text-muted"><i class="fas fa-building me-1"></i> PT. Herba Emas Wahidatama</p>
+                                        <p class="mb-1"><i class="fas fa-map-marker-alt me-1"></i> Purbalingga, Jawa Tengah, Indonesia</p>
+                                        <p class="mb-1"><i class="fas fa-calendar-alt me-1"></i> Dilamar pada: ${ formatted }</p>
+                                        ${ stat }
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                `
+            }
+            listLamaran += `</div>`
+        }
+        $('#listLamaran').html(listLamaran)
+    })
+
     // Fungsi logout
     function logout() {
         Swal.fire({

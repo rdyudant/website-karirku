@@ -12,6 +12,31 @@ $(document).ready(function(){
     )
     const data = res.data
     const data_user = res.data_user
+    const pengalamans = res.pengalaman
+    const berkas = res.berkas
+    var cv = '#'
+    var ktp = '#'
+    var ijazah = '#'
+    var kk = '#'
+    var berkas_lain = '#'
+    for (let b = 0; b < berkas.length; b++) {
+        if(berkas[b].jenis == 'cv'){
+            cv = `https://herbaemas.com/cv/${ berkas[b].fileberkas }`
+        }
+        if(berkas[b].jenis == 'ktp'){
+            ktp = `https://herbaemas.com/ktp/${ berkas[b].fileberkas }`
+        }
+        if(berkas[b].jenis == 'ijazah'){
+            ijazah = `https://herbaemas.com/ijazah/${ berkas[b].fileberkas }`
+        }
+        if(berkas[b].jenis == 'kk'){
+            kk = `https://herbaemas.com/kk/${ berkas[b].fileberkas }`
+        }
+        if(berkas[b].jenis == 'berkas_lain'){
+            berkas_lain = `https://herbaemas.com/berkas-lain/${ berkas[b].fileberkas }`
+        }
+    }
+
 
     const date = new Date(data.tanggal_lahir);
     const months = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
@@ -86,8 +111,95 @@ $(document).ready(function(){
                                     }
             </p>
         </div>
+        <h6 class="fw-bold text-uppercase mb-3 mt-5 border-bottom pb-2">
+            Pengalaman Kerja
+        </h6>
+        <div class="mb-4">
+            <label class="form-label text-muted">Pengalaman Kerja Sebelumnya</label>
+            <p class="fs-5 fw-semibold">${ pengalamans.lama == 1? 'Fresh Graduated': pengalamans.lama == 2? '&lt;1 Tahun':pengalamans.lama == 3? '1-2 Tahun (bidang yang sama)':pengalamans.lama == 4?'2-3 Tahun (bidang yang sama)':pengalamans.lama == 5?'3-5 Tahun (bidang yang sama)':'>5 Tahun (bidang yang sama)' }</p>
+        </div>
+        <div class="mb-4">
+            <label class="form-label text-muted">Pekerjaan Sebelumnya</label>
+            <p class="fs-5 fw-semibold">${ pengalamans.pekerjaan_sebelumnya??'-' }</p>
+        </div>
+        <div class="mb-4">
+            <label class="form-label text-muted">Jabatan/Posisi Pekerjaan Sebelumnya</label>
+            <p class="fs-5 fw-semibold">${ pengalamans.jabatan??'-' }</p>
+        </div>
+        <div class="mb-4">
+            <label class="form-label text-muted">Uraian Tugas Pekerjaan Sebelumnya</label>
+            <p class="fs-5 fw-semibold">${ pengalamans.uraian??'-' }</p>
+        </div>
+
+        <h6 class="fw-bold text-uppercase mb-3 mt-5 border-bottom pb-2">
+            Berkas Lamaran
+        </h6>
+        <div class="mb-4">
+            <label class="form-label text-muted">CV / Curriculum Vitae</label>
+            <div>
+                <a href="${ cv }" target="_blank" class="btn btn-sm btn-outline-custom">
+                    <i class="fas fa-file-pdf me-1"></i> Lihat CV
+                </a>
+            </div>
+        </div>
+        <div class="mb-4">
+            <label class="form-label text-muted">Kartu Tanda Penduduk</label>
+            <div>
+                <a href="${ ktp }" target="_blank" class="btn btn-sm btn-outline-custom">
+                    <i class="fas fa-file-pdf me-1"></i> Lihat KTP
+                </a>
+            </div>
+        </div>
+        <div class="mb-4">
+            <label class="form-label text-muted">Ijazah Terakhir</label>
+            <div>
+                <a href="${ ijazah }" target="_blank" class="btn btn-sm btn-outline-custom">
+                    <i class="fas fa-file-pdf me-1"></i> Lihat Ijazah
+                </a>
+            </div>
+        </div>
+        <div class="mb-4">
+            <label class="form-label text-muted">Kartu Keluarga</label>
+            <div>
+                <a href="${ kk }" target="_blank" class="btn btn-sm btn-outline-custom">
+                    <i class="fas fa-file-pdf me-1"></i> Lihat KK
+                </a>
+            </div>
+        </div>
+        <div class="mb-4">
+            <label class="form-label text-muted">Surat / Dokumen Pendukung Lain</label>
+            <div>
+                <a href="${ berkas_lain }" target="_blank" class="btn btn-sm btn-outline-custom">
+                    <i class="fas fa-file-pdf me-1"></i> Lihat Surat
+                </a>
+            </div>
+        </div>
     `
-    $('#bio-view').html(bioView)
+    $('#bio-view').html(bioView)   
+            
+    var bioLamar = `
+        <div class="mb-3">
+            <label for="namaLengkap" class="form-label">Nama Lengkap</label>
+            <input type="text" class="form-control" id="namaLengkap" value="${ data_user.fullname??'-' }" disabled>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" value="${ data_user.email??'-' }" disabled>
+        </div>
+        <div class="mb-3">
+            <label for="telepon" class="form-label">Nomor Telepon</label>
+            <input type="text" class="form-control" id="telepon" value="${ data.no_hp??'-' }" disabled>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">CV / Curriculum Vitae</label>
+            <div>
+                <a href="${ cv }" target="_blank" class="btn btn-sm btn-outline-custom">
+                    <i class="fas fa-file-pdf me-1"></i> Lihat CV
+                </a>
+            </div>
+        </div>
+    `
+    $('#bio-lamar').html(bioLamar)
 })
 
 // Cek token saat halaman dimuat

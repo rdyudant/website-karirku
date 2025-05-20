@@ -43,6 +43,7 @@
           }).responseText
         )
         const data = res.data;
+        console.log(data)
         const tanggalAwal = new Date(data.createdAt);
         const hariIni = new Date(); // otomatis ambil tanggal hari ini
 
@@ -79,7 +80,7 @@
                         <a href="javascript: history.back()" class="btn btn-outline-custom">
                             <i class="fas fa-arrow-left me-2"></i>Kembali
                         </a>
-                        <a href="/user-lamaran-cepat" class="btn btn-primary-custom ms-3">
+                        <a href="/user-lamaran-cepat?id_loker=${ data.id }&posisi=${ data.position }" class="btn btn-primary-custom ms-3">
                             <i class="fas fa-arrow-right me-2"></i>Lamaran Cepat
                         </a>
                     </div>  

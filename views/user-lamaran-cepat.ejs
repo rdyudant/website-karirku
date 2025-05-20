@@ -30,34 +30,13 @@
                             <img src="/assets/img/logo/HEW.png" alt="Logo Perusahaan" class="img-fluid rounded border" style="width: 64px; height: 64px; object-fit: contain;">
                         </div>
                         <div class="col">
-                            <p class="mb-1 text-muted small">Melamar untuk</p>
-                            <h5 class="mb-1 fw-semibold">Frontend Developer</h5>
-                            <p class="text-muted mb-1">PT Herba Emas Wahidatama</p>
+                            <div id="detailJob"></div>
                         </div>
                     </div>
 
                     <!-- Form Data Pribadi -->
                     <form>
-                        <div class="mb-3">
-                            <label for="namaLengkap" class="form-label">Nama Lengkap</label>
-                            <input type="text" class="form-control" id="namaLengkap" value="Budi Santoso" disabled>
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" value="budi@example.com" disabled>
-                        </div>
-                        <div class="mb-3">
-                            <label for="telepon" class="form-label">Nomor Telepon</label>
-                            <input type="text" class="form-control" id="telepon" value="081234567890" disabled>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">CV / Curriculum Vitae</label>
-                            <div>
-                                <a href="/uploads/CV_RDY.pdf" target="_blank" class="btn btn-sm btn-outline-custom">
-                                    <i class="fas fa-file-pdf me-1"></i> Lihat CV
-                                </a>
-                            </div>
-                        </div>
+                        <div id="bio-lamar"></div>
                         <!-- Surat Lamaran -->
                         <div class="mb-4">
                             <label class="form-label d-block">Surat Lamaran (PDF)</label>
@@ -74,7 +53,7 @@
 
                             <!-- Input unggah -->
                             <div id="uploadSection" class="mt-3">
-                                <input type="file" class="form-control" id="coverLetterFile" accept=".pdf">
+                                <input type="file" class="form-control" id="fileLamaran" accept=".pdf">
                             </div>
 
                             <!-- TinyMCE -->
@@ -96,7 +75,7 @@
                             <a href="javascript:history.back()" class="btn btn-outline-custom">
                                 <i class="fas fa-arrow-left me-2"></i>Kembali
                             </a>
-                            <button type="submit" class="btn btn-primary-custom" id="submitBtn" disabled>
+                            <button type="button" onclick="ajukanLamaran()" class="btn btn-primary-custom" id="submitBtn" disabled>
                                 <i class="fas fa-paper-plane me-2"></i>Lamar Sekarang
                             </button>
                         </div>
@@ -115,6 +94,123 @@
 <script src="assets/user.js"></script>
 
 <script>
+    $(document).ready(function(){
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const posisi = urlParams.get('posisi')
+        var detailJob = `
+            <p class="mb-1 text-muted small">Melamar untuk</p>
+            <h5 class="mb-1 fw-semibold">${ posisi }</h5>
+            <p class="text-muted mb-1">PT Herba Emas Wahidatama</p>
+        `;
+        $('#detailJob').html(detailJob)
+    })
+     
+function ajukanLamaran(){
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const id_loker = urlParams.get('id_loker')
+    const tipe = $("input[name='coverLetterOption']:checked").val();
+    if(tipe == 'write'){
+        var editor = tinymce.get('coverLetterText');
+        var lamaran = editor.getContent();
+        const kirim = $.parseJSON(
+        $.ajax({
+                url: 'https://herbaemas.com/proses-melamar', 
+                method: 'post',
+                data: {
+                    id_loker: id_loker,
+                    tipe: 'write',
+                    lamaran_text: lamaran
+                },
+                dataType: 'json',
+                async: false,
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('token')
+                }
+            }).responseText
+        )
+        if(kirim.kode == 200){
+            Swal.fire({
+                icon: 'info',
+                text: `${ kirim.msg }`,
+                showCancelButton: true,
+                confirmButtonText: 'Riwayat',
+                cancelButtonText: 'Tutup'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                window.location.href = '/user-riwayat';
+                }
+            });
+        }else{
+            Swal.fire({
+                icon: 'info',
+                title: 'Internal Server Error',
+                text: 'Mohon Maaf Server Error, silahkan coba lagi nanti.',
+                showCancelButton: true,
+                confirmButtonText: 'Ok',
+                cancelButtonText: 'Tutup'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '/user-informasi';
+                }
+            });
+        }
+    }else{
+        var selectedFile = document.getElementById("fileLamaran").files;
+        // Check File is not Empty
+        if (selectedFile.length > 0) {
+            var fileToLoad = selectedFile[0];
+            var fileReader = new FileReader();
+            var base64;
+            fileReader.onload = function(fileLoadedEvent) {
+                base64 = fileLoadedEvent.target.result;
+                const kirim = $.parseJSON(
+                    $.ajax({
+                        url: 'https://herbaemas.com/proses-melamar', 
+                        method: 'post',
+                        data: {
+                            id_loker: id_loker,
+                            tipe: 'upload',
+                            lamaran_file: base64
+                        },
+                        dataType: 'json',
+                        async: false,
+                        headers: {
+                            'Authorization': 'Bearer ' + localStorage.getItem('token')
+                        }
+                    }).responseText)
+                if(kirim.kode == 200){
+                    Swal.fire({
+                        icon: 'info',
+                        text: `${ kirim.msg }`,
+                        showCancelButton: true,
+                        confirmButtonText: 'Riwayat',
+                        cancelButtonText: 'Tutup'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                        window.location.href = '/user-riwayat';
+                        }
+                    });
+                }else{
+                    Swal.fire({
+                        icon: 'info',
+                        title: 'Internal Server Error',
+                        text: 'Mohon Maaf Server Error, silahkan coba lagi nanti.',
+                        showCancelButton: true,
+                        confirmButtonText: 'Ok',
+                        cancelButtonText: 'Tutup'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = '/user-informasi';
+                        }
+                    });
+                }
+            };
+            fileReader.readAsDataURL(fileToLoad);
+        }
+    }
+}
 document.addEventListener('DOMContentLoaded', function () {
     // Inisialisasi TinyMCE
     tinymce.init({

@@ -49,23 +49,23 @@
                         
                         <div class="mb-3">
                             <label for="cv" class="form-label">CV / Curriculum Vitae (PDF)</label>
-                            <input type="file" class="form-control" id="cv" name="cv" accept=".pdf" onchange="uploadCV(event, 'cv')">
+                            <input type="file" class="form-control" id="cv" name="cv" accept=".pdf" onchange="uploadBerkas(event, 'cv')">
                         </div>
                         <div class="mb-3">
                             <label for="ktp" class="form-label">Kartu Tanda Penduduk</label>
-                            <input type="file" class="form-control" id="ktp" name="ktp" accept=".pdf">
+                            <input type="file" class="form-control" id="ktp" name="ktp" accept=".pdf" onchange="uploadBerkas(event, 'ktp')">
                         </div>
                         <div class="mb-3">
                             <label for="ijazah" class="form-label">Ijazah Terakhir</label>
-                            <input type="file" class="form-control" id="ijazah" name="ijazah" accept=".pdf">
+                            <input type="file" class="form-control" id="ijazah" name="ijazah" accept=".pdf" onchange="uploadBerkas(event, 'ijazah')">
                         </div>
                         <div class="mb-3">
                             <label for="kk" class="form-label">Kartu Keluarga</label>
-                            <input type="file" class="form-control" id="kk" name="kk" accept=".pdf">
+                            <input type="file" class="form-control" id="kk" name="kk" accept=".pdf" onchange="uploadBerkas(event, 'kk')">
                         </div>
                         <div class="mb-3">
                             <label for="dokumen_lain" class="form-label">Surat / Dokumen Pendukung Lain</label>
-                            <input type="file" class="form-control" id="dokumen_lain" name="dokumen_lain">
+                            <input type="file" class="form-control" id="dokumen_lain" name="dokumen_lain" onchange="uploadBerkas(event, 'berkas_lain')">
                             <span><i><font style="color: red;">*</font>Jika lebih dari 1 file silahkan gabungkan jadi 1 file pdf untuk di upload</i></span>
                         </div>
                     </form>
@@ -81,7 +81,7 @@
 </button>
   
 <script>
-    function uploadCV(event, elementId){
+    function uploadBerkas(event, elementId){
         const selectedImage = document.getElementById(elementId);
         const fileInput = event.target;
 
@@ -98,14 +98,14 @@
                     base64String = reader.result
         
                     imageBase64Stringsep = base64String;
-        
+                    console.log(imageBase64Stringsep);
                     $.ajax({
                         url: 'https://herbaemas.com/upload-berkas-lamaran',
                             type: 'post',
                             data: {
                                 email: localStorage.getItem('email'),
-                                file: base64String,
-                                jenis: 'cv'
+                                fileBerkas: imageBase64Stringsep,
+                                jenis: elementId
                             },
                             dataType: 'json',
                             headers: {
