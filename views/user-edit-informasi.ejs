@@ -192,6 +192,7 @@
         const data = res.data
         const data_user = res.data_user
         const pengalamans = res.pengalaman
+        const kelamin = data.jenis_kelamin == null? 1:data.jenis_kelamin
 
         var bioedit = `
             <div class="mb-3">
@@ -205,8 +206,8 @@
             <div class="mb-3">
                 <label class="form-label">Jenis Kelamin</label>
                 <select class="form-select" name="gender" id="gender">
-                    <option value="1" ${ data.jenis_kelamin == 1 ? 'selected=""':'' }>Laki-laki</option>
-                    <option value="0" ${ data.jenis_kelamin == 0 ? 'selected=""':'' }>Perempuan</option>
+                    <option value="1" ${ kelamin == 1 ? 'selected=""':'' }>Laki-laki</option>
+                    <option value="0" ${ kelamin == 0 ? 'selected=""':'' }>Perempuan</option>
                 </select>
             </div>
             <div class="mb-3">
@@ -219,7 +220,7 @@
             </div>
             <div class="mb-3">
                 <label for="tgl_lahir" class="form-label">Tanggal Lahir</label>
-                <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir" value="${ data.tanggal_lahir }">
+                <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir" value="${ data.tanggal_lahir??'2002-05-01' }">
             </div>
             <div class="mb-3">
                 <label for="alamat" class="form-label">Alamat Lengkap</label>

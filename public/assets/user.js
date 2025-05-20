@@ -38,7 +38,7 @@ $(document).ready(function(){
     }
 
 
-    const date = new Date(data.tanggal_lahir);
+    const date = new Date(data.tanggal_lahir??'2002-05-01');
     const months = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
     const formatted = `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
 
