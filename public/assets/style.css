@@ -206,17 +206,23 @@ html, body {
     background-color: var(--primary-color);
 }
 
-.featured-companies img {
-    max-width: 120px;
-    max-height: 60px;
-    filter: grayscale(75%);
-    opacity: 0.75;
-    transition: all 0.3s;
+.gallery-slider .slick-slide {
+  padding: 0 10px; /* jarak antar slide */
 }
 
-.featured-companies img:hover {
-    filter: grayscale(0%);
-    opacity: 1;
+.gallery-slider img {
+  border-radius: 10px;
+  max-height: 350px;
+  object-fit: cover;
+  width: 100%;
+}
+
+/* Batasi lebar slider pada desktop agar tidak terlalu mepet */
+@media (min-width: 992px) {
+  .gallery-slider-wrapper {
+    max-width: 90%;
+    margin: 0 auto;
+  }
 }
 
 /* Signup Page Styles */
